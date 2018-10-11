@@ -12,7 +12,7 @@ const mbAdmin = [];
 const mbOwner = ["257847417183928320", "234558143051464704"]; // stitch, morph
 
 Client.defaultPermissionLevels
-    .add(5, (client, message) => message.author.roles.some(r => r.name === "Moderator"), {
+    .add(5, (client, message) => message.member && message.member.roles.some(r => r.name === "Moderator"), {
         fetch: true
     })
     .add(6, (client, message) => message.member && message.member.permissions.has("MANAGE_GUILD"), {
