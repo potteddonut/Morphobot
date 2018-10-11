@@ -30,6 +30,6 @@ module.exports = class extends Command {
             10: "Morphobot Developer"
         }
 
-        return msg.sendMessage(`Your permssion level is **${perm}** - ${levels[perm]}.`);
+        return message.sendMessage(`Your permission level is **${perm}** - ${levels[perm]}.`);
     }
 };
