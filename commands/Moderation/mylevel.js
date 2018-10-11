@@ -14,9 +14,9 @@ module.exports = class extends Command {
 
     async run(message) {
         let perm;
-        for (const level = 10; level >= 0; i--) {
-            if (!await message.hasAtLeastPermissionLevel(level)) continue;
-            perm = level;
+        for (let i = 10; i >= 0; i--) {
+            if (!await message.hasAtLeastPermissionLevel(i)) continue;
+            perm = i;
             break;
         }
 
@@ -30,6 +30,6 @@ module.exports = class extends Command {
             10: "Morphobot Developer"
         }
 
-        return msg.sendMessage(`Your permssion level is **${perm}** - ${levels[perm]}.`);
+        return message.sendMessage(`Your permssion level is **${perm}** - ${levels[perm]}.`);
     }
 };
