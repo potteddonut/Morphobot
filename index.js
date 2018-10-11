@@ -18,9 +18,9 @@ Client.defaultPermissionLevels
     .add(6, (client, message) => message.member && message.member.permissions.has("MANAGE_GUILD"), {
         fetch: true
     })
-    .add(7, (client, message) => message.guild.ownerID === message.author.id), {
+    .add(7, (client, message) => message.guild.ownerID === message.author.id, {
         fetch: true
-    }
+    })
     .add(8, (client, message) => message.guild && message.guild.id === "488337189831442432" && message.member.roles.has("488337556224737290"), {
         fetch: true
     })
