@@ -1,0 +1,18 @@
+{
+  "name": "morphobot",
+  "version": "1.0.0",
+  "description": "Morphobot is a discord.js bot written with the Klasa framework",
+  "main": "src/index.js",
+  "dependencies": {
+    "discord.js": "github:discordjs/discord.js",
+    "eslint-config-klasa": "github:dirigeants/klasa-lint",
+    "klasa": "github:dirigeants/klasa"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "src/index.js"
+  },
+  "author": "Morphoxeris#1111",
+  "license": "ISC",
+  "keywords": []
+}
