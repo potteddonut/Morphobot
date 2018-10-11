@@ -7,7 +7,6 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             aliases: ['rank'],
-            permissionLevel: 0,
             guarded: true,
             description: "Displays your permission level in the message guild."
         });
@@ -30,5 +29,7 @@ module.exports = class extends Command {
             9: "Morphobot Administrator",
             10: "Morphobot Developer"
         }
+
+        return msg.sendMessage(`Your permssion level is **${perm}** - ${levels[perm]}.`);
     }
 };
