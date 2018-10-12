@@ -9,7 +9,8 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             aliases: ["pfp", "profile"],
-            description: "Returns the avatar of a user in full size."
+            description: "Returns the avatar of a user in full size.",
+            runIn: ["text"]
         });
     }
     run(message, [member = message.member]) {
