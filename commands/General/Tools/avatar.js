@@ -21,5 +21,5 @@ module.exports = class extends Command {
                     size: 2048
                 })));
         }
-    }
-}
+    };
+};
