@@ -31,6 +31,9 @@ Client.defaultPermissionLevels
         break: true
     });
 
+Client.defaultGuildSchema
+    .add('modlog-channel', 'TextChannel');
+
 class MyKlasaClient extends Client {
 
     constructor(...args) {
