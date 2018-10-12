@@ -14,7 +14,7 @@ module.exports = class extends Command {
 
     async run(message) {
         let perm;
-        for (const level = 10; level >= 0; i--) {
+        for (let level = 10; level >= 0; level--) {
             if (!await message.hasAtLeastPermissionLevel(level)) continue;
             perm = level;
             break;
