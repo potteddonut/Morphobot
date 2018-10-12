@@ -13,13 +13,11 @@ module.exports = class extends Command {
         });
     }
     run(message, [member = message.member]) {
-        if (!member) {
-            return message.sendEmbed(new MessageEmbed()
-                .setColor(member.displayHexColor || 0xFFFFFF)
-                .setTitle("Here is your avatar: ")
-                .setThumbnail(message.author.displayAvatarURL({
-                    size: 2048
-                })));
-        }
+        return message.sendEmbed(new MessageEmbed()
+            .setColor(member.displayHexColor || 0xFFFFFF)
+            .setTitle("Here is your avatar: ")
+            .setImage(message.author.displayAvatarURL({
+                size: 2048
+            })));
     };
 };
