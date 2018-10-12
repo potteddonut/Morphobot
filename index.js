@@ -18,32 +18,20 @@ Client.defaultPermissionLevels
     .add(6, (client, message) => message.member && message.member.permissions.has("MANAGE_GUILD"), {
         fetch: true
     })
-    .add(7, (client, message) => message.guild.ownerID === message.author.id, {
+    .add(7, (client, message) => message.guild && message.guild.ownerID === message.author.id, {
         fetch: true
     })
     .add(8, (client, message) => message.guild && message.guild.id === "488337189831442432" && message.member.roles.has("488337556224737290"), {
         fetch: true
     })
-    .add(9, (client, message) => message.member && mbAdmin.includes(message.author.id), {
+    .add(9, (client, message) => mbAdmin.includes(message.author.id), {
         fetch: true
     })
-    .add(10, (client, message) => message.member && mbOwner.includes(message.author.id), {
+    .add(10, (client, message) => mbOwner.includes(message.author.id), {
         break: true
     });
 
 Client.defaultGuildSchema
     .add('modlog-channel', 'TextChannel');
 
-class MyKlasaClient extends Client {
-
-    constructor(...args) {
-        super(...args);
-
-        // Add any properties to your Klasa Client
-    }
-
-    // Add any methods to your Klasa Client
-
-}
-
-new MyKlasaClient(config).login(token);
+new Client(config).login(token);
