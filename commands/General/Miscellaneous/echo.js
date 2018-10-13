@@ -1,4 +1,6 @@
-const { Command } = require("klasa");
+const {
+  Command
+} = require("klasa");
 
 module.exports = class extends Command {
   constructor(...args) {
@@ -10,7 +12,7 @@ module.exports = class extends Command {
       usageDelim: " "
     });
   }
-  async run(message, [channel, ...text]) {
+  async run(message, [channel = message.channel, ...text]) {
     text = text.join(this.usageDelim);
     if (channel.guild !== message.guild)
       throw "You can't echo in other servers!";
