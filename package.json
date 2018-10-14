@@ -5,12 +5,14 @@
   "main": "src/index.js",
   "dependencies": {
     "discord.js": "github:discordjs/discord.js",
-    "eslint-config-klasa": "github:dirigeants/klasa-lint",
     "klasa": "github:dirigeants/klasa"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint-config-klasa": "github:dirigeants/klasa-lint"
+  },
   "scripts": {
-    "test": "src/index.js"
+    "test": "src/index.js",
+    "lint": "eslint . --fix"
   },
   "author": "Morphoxeris#1111",
   "license": "ISC",
