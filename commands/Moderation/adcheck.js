@@ -10,7 +10,7 @@ module.exports = class extends Command {
         })
     }
     run(message, [channel = message.channel]) {
-        let check = message.guild.members.filter(m => m.displayName.includes('discord.gg'));
-        message.channel.send(`\`\`\`\n${message.guild.members.map(m => m.tag).join('\n')}\n\`\`\``)
+        let found = message.guild.members.filter(m => m.displayName.includes('discord.gg'));
+        message.channel.send(`\`\`\`\n${found.map(m => m.tag).join('\n')}\n\`\`\``)
     }
 };
