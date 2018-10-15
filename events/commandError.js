@@ -20,7 +20,7 @@ module.exports = class extends Event {
             this.client.emit('wtf', `[COMMAND] ${command.path}\n${error.stack || error}`);
             const code = Date.now().toString(36);
             await db.create('errors', code, error);
-            return message.sendMessage(`An unexpected error occured! Please contact the developers with the error code ${code}`)
+            return message.sendMessage(`An unexpected error occured! Please contact the developers with the error code \`${code}\``)
         } else {
             message.sendMessage(error).catch(err => this.client.emit('wtf', err));
         }
