@@ -15,10 +15,15 @@ module.exports = class extends Event {
 
 module.exports = class extends Event {
     async run(message, command, params, error) {
-        const r = this.client.providers.default;
+        const db = this.client.providers.default;
         if (error.message && error instanceof Error) {
             this.client.emit('wtf', `[COMMAND] ${command.path}\n${error.stack || error}`);
-            const code = new Date().getTime().toString(36);
+            const code = Date.now().toString(36);
+            await db.create('errors', code, error);
+            return message.sendMessage(`An unexpected error occured! Please contact the developers with the error code ${code}`)
+        } else {
+            message.sendMessage(error).catch(err => this.client.emit('wtf', err));
         }
+        return 0;
     }
-}
+};

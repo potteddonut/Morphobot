@@ -10,6 +10,7 @@ module.exports = class extends Command {
             permissionLevel: 5,
             aliases: ['nick'],
             runIn: ['text'],
+            requiredPermissions: ['MANAGE_NICKNAMES'],
             usage: '<user:member> <nickname:str>[...]',
             usageDelim: ' '
         });
@@ -17,7 +18,10 @@ module.exports = class extends Command {
     async run(message, [user, ...newNickName]) {
         newNickName = newNickName.join(this.usageDelim);
         await user.setNickname(newNickName)
-            .then(() => message.send(`Succesfully set **${user.tag}**'s nickname to **${newNickName}.`));
+            .then(() => message.send(`Succesfully set **${user.user.tag}**'s nickname to **${newNickName}**.`))
+            .catch(() => {
+                throw "I can't change that user's nickname. Make sure their role is below mine.";
+            });
     }
 
 };
