@@ -1,4 +1,6 @@
-const { Client } = require('klasa');
+const {
+	Client
+} = require('klasa');
 const {
 	config,
 	token
@@ -31,6 +33,6 @@ Client.defaultPermissionLevels
 	});
 
 Client.defaultGuildSchema
-	.add('modlog-channel', 'TextChannel');
+	.add('modlogs', 'TextChannel');
 
 new Client(config).login(token);
