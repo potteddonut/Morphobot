@@ -22,9 +22,7 @@ module.exports = class ModLog {
         const {
             default: provider
         } = this.client.providers;
-        const caseID = await provider.get('modlogs', guild.id, {
-            logs: []
-        });
+        const caseID = await this.client.providers.default.get('modlogs', guild.id).then(c => c.logs ? c.logs.length + 1 : 1);
         let raw = await provider.get('modlogs', guild.id);
         if (!raw) {
             await provider.create('modlogs', guild.id, {
@@ -43,7 +41,7 @@ module.exports = class ModLog {
             }
         });
         await provider.update('modlogs', guild.id, raw);
-        if (guild.settings.modlogs && guild.channels.get(guild.settings.get("modlogs").embedable)) return this.send({
+        if (guild.settings.modlogs && guild.channels.get(guild.settings.get("modlogs")).embedable) return this.send({
             type,
             caseID,
             guild,
