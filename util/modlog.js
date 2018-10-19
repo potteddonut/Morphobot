@@ -1,81 +1,124 @@
 const {
+    Duration
+} = require.main.exports;
+const {
     MessageEmbed
-} = require('discord.js');
+} = require("discord.js");
+
 module.exports = class ModLog {
-    constructor(guild) {
-        this.guild = guild;
-        this.client = guild.client;
-
-        this.type = null;
-        this.user = null;
-        this.moderator = null;
-        this.reason = null;
-        this.case-null;
+    constructor(client) {
+        this.client = client;
     }
-    setType(type) {
-        this.type = type;
-        return this;
-    }
-    setUser(user) {
-        this.user = {
-            id: user.id,
-            tag: user.tag
-        };
-        return this;
-    }
-    setModerator(user) {
-        this.moderator = {
-            id: user.id,
-            tag: user.tag,
-            avatar: user.displayAvatarURL()
+    async log(data) {
+        const {
+            type,
+            guild,
+            target,
+            moderator,
+            reason,
+            time,
+            warnCount
+        } = data;
+        const {
+            default: provider
+        } = this.client.providers;
+        const caseID = await provider.get('modlogs', guild.id, {
+            logs: []
+        });
+        let raw = await provider.get('modlogs', guild.id);
+        if (!raw) {
+            await provider.create('modlogs', guild.id, {
+                logs: []
+            });
+            raw = await provider.get('modlogs', guild.id);
         }
-        return this;
+        raw.logs.push({
+            type,
+            case: caseID,
+            reason,
+            moderator: {
+                avatar: moderator.displayAvatarURL(),
+                tag: moderator.tag,
+                id: moderator.id
+            }
+        });
+        await provider.update('modlogs', guild.id, raw);
+        if (guild.settings.modlogs && guild.channels.get(guild.settings.get("modlogs").embedable)) return this.send({
+            type,
+            caseID,
+            guild,
+            target,
+            moderator,
+            reason,
+            time,
+            warnCount
+        })
+        return null;
     }
-    setReason(reason = null) {
-        if (reason instanceof Array) reason = reason.join(' ');
-        this.reason = reason;
-        return this;
+    async kick(data) {
+        return this.log({
+            type: 'kick',
+            ...data
+        });
     }
-
-    async send() {
-        const channel = this.guild.channels.get(this.guild.settings.get("modlogs").id);
-        if (!channel) throw "The specified mod-log channel does not exist.";
-        await this.getCase();
-        return channel.send({
-            embed: this.embed
+    async softban(data) {
+        return this.log({
+            type: 'softban',
+            ...data
+        });
+    }
+    async warn(data) {
+        const warnCount = await this.client.providers.default.get('modlogs', data.guild.id)
+            .then(raw => raw && raw.logs && raw.logs.length ? raw.logs.filter(log => log.type === "warn").length : 0);
+        return this.log({
+            type: 'warn',
+            warnCount,
+            ...data
+        });
+    }
+    async ban(data) {
+        if (data.time) {
+            await this.client.schedule.create('unban', data.time, {
+                data: {
+                    guild: data.guild.id,
+                    user: data.target.id
+                }
+            });
+        }
+        return this.log({
+            type: 'ban',
+            ...data
+        });
+    }
+    async send({
+        type,
+        caseID,
+        guild,
+        target,
+        moderator,
+        reason,
+        time,
+        warnCount
+    }) {
+        const output = [
+            `**Action**: ${type}`,
+            `**User**: ${target.tag} (${target.id})`,
+            `**Reason**: ${reason || `No reason specified. Use ${guild.settings.prefix}reason to specify a reason.`}`
+        ];
+        if (time) output.push(`**Expires**: ${Duration.toNow(time)}`);
+        if (warnCount) output.push(`**Warnings**: ${warnCount++}`);
+        const embed = new MessageEmbed()
+            .setAuthor(moderator.tag, moderator.displayAvatarURL())
+            .setColor(this.color(type))
+            .setDescription(output.join("\n"))
+            .setFooter(`Case ${caseID}`)
+            .setTimestamp();
+        return guild.channels.get(guild.settings.modlogs).send({
+            embed
         })
     }
 
-    get embed() {
-        const embed = new MessageEmbed()
-            .setAuthor(this.moderator.tag, this.moderator.avatar)
-            .setColor(ModLog.colour(this.type))
-            .setDescription([
-                `**Type**: ${this.type[0].toUpperCase() + this.type.slice(1)}`,
-                `**User**: ${this.user.tag} (${this.user.id})`,
-                `**Reason**: ${this.reason || `No reason specified. Use \`${this.guild.settings.prefix}reason ${this.case}\` to claim this log.`}`
-            ])
-            .setFooter(`Case Number ${this.case}`)
-            .setTimestamp();
-        return embed;
-    }
-
-    async getCase() {
-        this.case = this.guild.settings.get('modlogs').length;
-        return this.guild.settings.update('modlogs', this.pack);
-    }
-
-    get pack() {
-        return {
-            type: this.type,
-            user: this.user.id,
-            moderator: this.moderator.id,
-            reason: this.reason,
-            case: this.case
-        };
-    }
-
-    colour(type) {
+    color(type) {
         switch (type) {
             case 'ban':
                 return 16724253;
@@ -87,6 +130,8 @@ module.exports = class ModLog {
                 return 16573465;
             case 'softban':
                 return 15014476;
+            case 'mute':
+                return '#0047AB';
             default:
                 return 16777215;
         }

@@ -12,6 +12,7 @@ module.exports = class extends Command {
 		});
 	}
 
+	// with credits to the guys over at diri hq
 	async run(message) {
 		let perm;
 		for (let level = 10; level >= 0; level--) {

@@ -5,13 +5,15 @@ const {
 	config,
 	token
 } = require('./config');
+const ModLog = require("./util/modlog");
 
-// "488337189831442432" // morphobot lounge
+// "488337189831442432" morphobot lounge
 // "488337556224737290" staff role
 const mbAdmin = [];
 // stitch, morph
 const mbOwner = ['257847417183928320', '234558143051464704'];
 
+// Morphobot's custom permission level system and configuration.
 Client.defaultPermissionLevels
 	.add(5, (client, message) => message.member && message.member.roles.some(role => role.name === 'Moderator'), {
 		fetch: true
@@ -35,4 +37,11 @@ Client.defaultPermissionLevels
 Client.defaultGuildSchema
 	.add('modlogs', 'TextChannel');
 
-new Client(config).login(token);
+class Morphobot extends Client {
+	constructor(...args) {
+		super(...args);
+		this.moderation = new ModLog(this)
+	}
+}
+
+new Morphobot(config).login(token);

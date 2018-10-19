@@ -1,15 +1,12 @@
-// starting out with no case number warn system, which fully depends on logs to track a user's
-// moderation history.
 const {
     Command
 } = require("klasa");
-const ModLog = require('../../util/modlog');
 
 module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             permissionLevel: 5,
-            aliases: ['warnuser'],
+            name: "warn",
             runIn: ["text"],
             usageDelim: " ",
             usage: "<member:member> <reason:string> [...]",
@@ -19,15 +16,17 @@ module.exports = class extends Command {
     async run(message, [member, ...reason]) {
         reason = reason.length > 0 ? reason.join(' ') : null;
         if (member.roles.highest.position >= message.member.roles.highest.position) {
-            return message.send(`That user has either the same or a higher role than yours!`)
+            return message.send(`My role is not high enough to warn that user!`);
         }
         if (message.guild.settings.get("modlogs")) {
-            new ModLog(message.guild)
-                .setType("warn")
-                .setModerator(message.author)
-                .setUser(member.user)
-                .setReason(reason)
-                .send();
+            this.client.moderation.warn({
+                guild: message.guild,
+                target: member.user,
+                moderator: message.author,
+                reason
+            })
+            await member.user.send(`You have been warned in \`${message.guild.name}\` by ${message.author.tag}
+        for \`${reason}\``).catch(() => null);
         }
         return message.send(`\`${member.user.tag}\` has been succesfully warned.`)
     }
