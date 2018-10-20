@@ -9,23 +9,27 @@ module.exports = class extends Command {
             name: "warn",
             runIn: ["text"],
             usageDelim: " ",
-            usage: "<member:member> <reason:string> [...]",
+            usage: "<member:member> [reason:string] [...]",
             description: "Warns a server member."
         });
     }
-
     async run(message, [member, ...reason]) {
-        reason = reason.length > 0 ? reason.join(' ') : null;
+        if (member === message.author) return message.send("You.. can't kick yourself.");
+        member = await message.guild.members.fetch(member);
 
-        if (member.roles.highest.position >= message.member.roles.highest.position) {
+        if (member.roles.highest.position >= message.member.roles.highest.position) return message.send("You can't kick members of the same or higher rank!")
+
+        reason = reason ? reason.join(" ") : `No reason was provided. Use ${message.guild.settings.prefix}reason to update.`;
+
+        if (message.guild.settings.get("modlogs")) {
             this.client.moderation.warn({
                 guild: message.guild,
                 target: member.user,
                 moderator: message.author,
                 reason
             })
-            await member.user.send(`You have been warned in \`${message.guild.name}\` for \`${reason}\``).catch(() => null);
         }
+        await member.user.send(`You have been warned in \`${message.guild.name}\` for \`${reason}\``).catch(() => null);
         return message.send(`\`${member.user.tag}\` has been succesfully warned.`)
     }
 }

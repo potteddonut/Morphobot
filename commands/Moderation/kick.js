@@ -8,7 +8,7 @@ module.exports = class extends Command {
             name: "kick",
             usageDelim: " ",
             description: "Kicks a user from the server.",
-            usage: "<member:member> <reason:string> [...]",
+            usage: "<member:member> [reason:string] [...]",
             runIn: ['text'],
             botPerms: ['KICK_MEMBERS']
         })
@@ -29,6 +29,7 @@ module.exports = class extends Command {
             moderator: message.author,
             reason
         });
+
         await member.kick(reason);
         await member.user.send(`You were kicked from \`${message.guild.name}\` for ${reason}`).catch(() => null);
         return message.send(`\`${member.user.tag}\` was succesfully kicked.`)

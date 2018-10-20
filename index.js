@@ -35,10 +35,7 @@ Client.defaultPermissionLevels
     });
 
 Client.defaultGuildSchema
-    .add('channels', folder => folder
-        .add('modlogs', 'TextChannel'))
-    .add('roles', folder => folder
-        .add('modRole', 'Role'));
+    .add("modlogs", "TextChannel");
 
 class Morphobot extends Client {
     constructor(...args) {
