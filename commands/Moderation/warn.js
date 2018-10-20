@@ -13,20 +13,18 @@ module.exports = class extends Command {
             description: "Warns a server member."
         });
     }
+
     async run(message, [member, ...reason]) {
         reason = reason.length > 0 ? reason.join(' ') : null;
+
         if (member.roles.highest.position >= message.member.roles.highest.position) {
-            return message.send(`My role is not high enough to warn that user!`);
-        }
-        if (message.guild.settings.get("modlogs")) {
             this.client.moderation.warn({
                 guild: message.guild,
                 target: member.user,
                 moderator: message.author,
                 reason
             })
-            await member.user.send(`You have been warned in \`${message.guild.name}\` by ${message.author.tag}
-        for \`${reason}\``).catch(() => null);
+            await member.user.send(`You have been warned in \`${message.guild.name}\` for \`${reason}\``).catch(() => null);
         }
         return message.send(`\`${member.user.tag}\` has been succesfully warned.`)
     }

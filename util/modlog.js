@@ -22,7 +22,8 @@ module.exports = class ModLog {
         const {
             default: provider
         } = this.client.providers;
-        const caseID = await this.client.providers.default.get('modlogs', guild.id).then(c => c.logs ? c.logs.length + 1 : 1);
+        const caseID = await provider.get('modlogs', guild.id).then(raw => raw && raw.logs ? raw.logs.length : 0) + 1;
+        data.caseID = caseID;
         let raw = await provider.get('modlogs', guild.id);
         if (!raw) {
             await provider.create('modlogs', guild.id, {
