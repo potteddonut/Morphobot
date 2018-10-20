@@ -33,7 +33,7 @@ module.exports = class extends Command {
         });
         const msg = messages.find(mes => mes.author.id === this.client.user.id && mes.embeds.length > 0 && mes.embeds[0].footer && mes.embeds[0].footer.text === `Case ${selected}`);
 
-        if (message) {
+        if (msg) {
             const embed = msg.embeds[0];
             const [type, user] = embed.description.split('\n');
             embed.description = [
