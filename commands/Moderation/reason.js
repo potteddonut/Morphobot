@@ -31,6 +31,7 @@ module.exports = class extends Command {
         const messages = await channel.messages.fetch({
             limit: 100
         });
+
         const msg = messages.find(mes => mes.author.id === this.client.user.id && mes.embeds.length > 0 && mes.embeds[0].footer && mes.embeds[0].footer.text === `Case ${selected}`);
 
         if (msg) {
