@@ -15,7 +15,7 @@ const mbOwner = ['257847417183928320', '234558143051464704'];
 
 // Morphobot's custom permission level system and configuration.
 Client.defaultPermissionLevels
-    .add(5, (client, message) => message.member && message.member.roles.some(role => role.name === 'Moderator'), {
+    .add(5, (client, message) => message.member && message.member.roles.has(message.guild.settings.get("modRole")), {
         fetch: true
     })
     .add(6, (client, message) => message.member && message.member.permissions.has('MANAGE_GUILD'), {
@@ -35,7 +35,8 @@ Client.defaultPermissionLevels
     });
 
 Client.defaultGuildSchema
-    .add("modlogs", "TextChannel");
+    .add("modlogs", "TextChannel")
+    .add("modRole", "Role");
 
 class Morphobot extends Client {
     constructor(...args) {
