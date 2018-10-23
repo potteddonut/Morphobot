@@ -34,7 +34,7 @@ module.exports = class extends Command {
     getFilter(message, filter, user) {
         switch (filter) {
             case "link":
-                return msg => /https?:\/\/[^ /.]+\.[^ /.]+/.test(mes.content);
+                return mes => /https?:\/\/[^ /.]+\.[^ /.]+/.test(mes.content);
             case 'invite':
                 return mes => /(https?:\/\/)?(www\.)?(discord\.(gg|li|me|io)|discordapp\.com\/invite)\/.+/.test(mes.content);
             case 'bots':
