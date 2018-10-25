@@ -35,8 +35,18 @@ Client.defaultPermissionLevels
     });
 
 Client.defaultGuildSchema
-    .add("modlogs", "TextChannel")
-    .add("modRole", "Role");
+
+    // SettingsGateway key types
+    // any, boolean, categoryChannel, channel (accepts any kind of channel), 
+    // command (Command instance, resolves a command.), float, guild, integer,
+    // language (Language instance, resolves a language.), number, role, string, textchannel,
+    // url, user, voicechannel.
+
+    // Moderation settings go here.
+    .add("moderation", folder => folder
+        .add("modlogs", "TextChannel")
+        .add("modRole", "Role")
+        .add("muteRole", "Role"));
 
 class Morphobot extends Client {
     constructor(...args) {
