@@ -43,10 +43,9 @@ Client.defaultGuildSchema
     // url, user, voicechannel.
 
     // Moderation settings go here.
-    .add("moderation", folder => folder
-        .add("modlogs", "TextChannel")
-        .add("modRole", "Role")
-        .add("muteRole", "Role"));
+    .add("modlogs", "TextChannel")
+    .add("modRole", "Role")
+    .add("muteRole", "Role");
 
 class Morphobot extends Client {
     constructor(...args) {
