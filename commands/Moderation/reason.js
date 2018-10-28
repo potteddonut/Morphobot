@@ -6,6 +6,8 @@ const {
     MessageEmbed
 } = require('discord.js');
 
+const colour = this.client.moderation.colour
+
 module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
