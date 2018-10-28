@@ -23,7 +23,7 @@ module.exports = class extends Command {
     async run(message, [selected, ...reason]) {
         reason = reason.length > 0 ? reason.join(this.usageDelim) : null;
         const modlogs = await this.client.providers.default.get("modlogs", message.guild.id).then(data => data || []);
-        const log = modlogs.logs[selected];
+        const log = modlogs.logs[selected - 1];
         if (!log) throw "That's not a valid case number!"
 
         const channel = message.guild.channels.get(message.guild.settings.get("modlogs"));
@@ -31,10 +31,8 @@ module.exports = class extends Command {
         const messages = await channel.messages.fetch({
             limit: 100
         });
-
         const msg = messages.find(mes => mes.author.id === this.client.user.id && mes.embeds.length > 0 && mes.embeds[0].footer && mes.embeds[0].footer.text === `Case ${selected}`);
-
-        if (msg) {
+        if (msg) { // msg in this case refers to the constant that we defined above.
             const embed = msg.embeds[0];
             const [type, user] = embed.description.split('\n');
             embed.description = [
