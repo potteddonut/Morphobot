@@ -6,6 +6,8 @@ const {
     MessageEmbed
 } = require('discord.js');
 
+const colour = this.client.moderation.colour
+
 module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
@@ -64,19 +66,3 @@ module.exports = class extends Command {
     }
 }
 
-function colour(type) {
-    switch (type) {
-        case 'ban':
-            return 16724253;
-        case 'unban':
-            return 1822618;
-        case 'warn':
-            return 16564545;
-        case 'kick':
-            return 16573465;
-        case 'softban':
-            return 15014476;
-        default:
-            return 16777215;
-    }
-}
