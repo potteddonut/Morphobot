@@ -46,7 +46,6 @@ module.exports = class extends Command {
         } else {
             await message.sendEmbed(new MessageEmbed()
                 .setAuthor(log.moderator.tag, log.moderator.avatarURL())
-                .setColor(colour(log.type))
                 .setDescription([
                     `**Type**: ${log.type}`,
                     `**User**: ${log.user.tag} (${log.user.id})`,
@@ -61,22 +60,5 @@ module.exports = class extends Command {
             `Old reason: ${oldReason || `Not set.`}`,
             `New reason: ${reason}`
         ].join('\n'))}`);
-    }
-}
-
-function colour(type) {
-    switch (type) {
-        case 'ban':
-            return 16724253;
-        case 'unban':
-            return 1822618;
-        case 'warn':
-            return 16564545;
-        case 'kick':
-            return 16573465;
-        case 'softban':
-            return 15014476;
-        default:
-            return 16777215;
     }
 }
