@@ -45,7 +45,10 @@ Client.defaultGuildSchema
     // Moderation settings go here.
     .add("modlogs", "TextChannel")
     .add("modRole", "Role")
-    .add("muteRole", "Role");
+    .add("muteRole", "Role")
+    .add("antiinvite", 'boolean', {
+        default: false
+    });
 
 class Morphobot extends Client {
     constructor(...args) {
