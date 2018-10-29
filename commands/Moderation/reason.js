@@ -6,7 +6,6 @@ const {
     MessageEmbed
 } = require('discord.js');
 
-const colour = this.client.moderation.colour
 
 module.exports = class extends Command {
     constructor(...args) {
@@ -63,4 +62,4 @@ module.exports = class extends Command {
             `New reason: ${reason}`
         ].join('\n'))}`);
     }
-}
+};
