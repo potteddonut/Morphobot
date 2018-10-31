@@ -8,11 +8,11 @@ module.exports = class extends Command {
             usage: "<user:username>"
         });
     }
-    run(message, [member]) {
-        member = message.guild.members.fetch(member);
+    async run(message, [member]) {
+        member = await message.guild.members.fetch(member);
         const responses = [
-            `Oh no! ${message.author} just stabbed ${member.user.name}!`,
-            `:scream: ${message.author} just shanked ${member.user.name}!`
+            `Oh no! ${message.author} just stabbed ${member.user.username}!`,
+            `:scream: ${message.author} just shanked ${member.user.username}!`
         ];
         return message.sendMessage(responses[Math.floor(Math.random() * responses.length)]);
     }
