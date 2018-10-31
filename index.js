@@ -9,6 +9,8 @@ const ModLog = require("./util/modlog");
 
 // "488337189831442432" morphobot lounge
 // "488337556224737290" staff role
+const mbStaff = ['147039883372789761', '116293018742554625'];
+// goat, jake
 const mbAdmin = [];
 // stitch, morph
 const mbOwner = ['257847417183928320', '234558143051464704'];
@@ -24,7 +26,7 @@ Client.defaultPermissionLevels
     .add(7, (client, message) => message.guild && message.guild.ownerID === message.author.id, {
         fetch: true
     })
-    .add(8, (client, message) => message.guild && message.guild.id === '488337189831442432' && message.member.roles.has('488337556224737290'), {
+    .add(8, (client, message) => mbStaff.includes(message.author.id), {
         fetch: true
     })
     .add(9, (client, message) => mbAdmin.includes(message.author.id), {
