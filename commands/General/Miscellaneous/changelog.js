@@ -12,10 +12,15 @@ module.exports = class extends Command {
             aliases: ['updates', 'cl']
         });
     }
-    run(message) {
-        const changelog = this.client.channels.get('499901290579492865').lastMessage;
+    async run(message) {
+        const channel = this.client.channels.get('499901290579492865');
+        const changelog = await channel.messages.fetch({
+            limit: 1
+        }).then((msgs) => msgs.first());
         message.channel.sendEmbed(new MessageEmbed()
             .setTitle('Latest changelog entry: ')
-            .setDescription(changelog));
+            .setColor(message.member.displayHexColor)
+            .setDescription(changelog)
+            .setFooter(`Morphobot Changelogs`).setTimestamp());
     }
-}
+};
