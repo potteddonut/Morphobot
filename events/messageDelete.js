@@ -1,4 +1,6 @@
-const { Event } = require('klasa');
+const {
+	Event
+} = require('klasa');
 
 module.exports = class extends Event {
 
@@ -8,6 +10,7 @@ module.exports = class extends Event {
 				if (!msg.deleted) msg.delete();
 			}
 		}
+		message.channel.sniped = message;
 	}
 
 };
