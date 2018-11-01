@@ -7,12 +7,13 @@ module.exports = class extends Command {
         super(...args, {
             permissionLevel: 10, // dev
             aliases: ["errorcode"],
-            description: "Returns details of an error via a generated error code."
+            description: "Returns details of an error via a generated error code.",
+            usage: "<code:string>"
         })
     }
     async run(message, [code]) {
-        const x = await this.client.providers.default.get("errors", code);
-        if (!x) throw "";
-        return message.sendMessage(util.codeBlock("js", x || x.error));
+        const x = await this.client.providers.default.get("errors", code).catch(() => null);
+        if (!x) throw "Couldn't find that error.";
+        return message.sendMessage(util.codeBlock("js", x.error));
     }
 }
