@@ -9,12 +9,12 @@ module.exports = class extends Command {
 			permissionLevel: 5,
 			runIn: ['text'],
 			description: 'Make the bot repeat / send a message.',
-			usage: '<channel:channel> <message:string>[...]',
+			usage: '[channel:channel] <message:string>[...]',
 			usageDelim: ' '
 		});
 	}
 
-	async run(message, [channel, ...text]) {
+	async run(message, [channel = message.channel, ...text]) {
 		text = text.join(this.usageDelim);
 		if (channel.guild !== message.guild) {
 			throw "You can't echo in other servers!";
