@@ -55,7 +55,7 @@ module.exports = class extends Command {
 			.catch(() => {
 				if (message.channel.type !== 'dm') message.sendLocale('COMMAND_HELP_NODM');
 			});
-		message.channel.send("A list of all commands has been sent to your DMs! Please take note that only commands you have access to will show up!")
+
 	}
 
 	async buildHelp(message) {
