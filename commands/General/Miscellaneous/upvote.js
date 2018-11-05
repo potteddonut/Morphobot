@@ -10,6 +10,8 @@ module.exports = class extends Command {
     run(message) {
         message.sendEmbed(new MessageEmbed()
             .setAuthor(`Upvoting Morphobot`, this.client.user.displayAvatarURL())
-            .setDescription("You can upvote Morphobot [here](https://discordbots.org/bot/499457091526721538/vote)"));
+            .setDescription(`You can upvote Morphobot [here](https://discordbots.org/bot/499457091526721538/vote).
+                            Thanks for supporting Morphobot!`)
+            .setColor(message.author.displayAvatarURL()));
     }
 }
