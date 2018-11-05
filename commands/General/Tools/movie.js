@@ -15,7 +15,7 @@ module.exports = class extends Command {
     async run(msg, [query, page = 1]) {
         const url = new URL('https://api.themoviedb.org/3/search/movie');
         url.search = new URLSearchParams([
-            ['api-key', tmdbAPIkey],
+            ['api_key', tmdbAPIkey],
             ['query', query]
         ]);
 
