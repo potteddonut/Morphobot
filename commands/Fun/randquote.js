@@ -22,7 +22,7 @@ module.exports = class extends Command {
                 before: messageBank.last().id
             }));
         };
-        const message = messageBank
+        const msg = messageBank
             .filter(ms => !ms.author.bot && ms.content.replace(/[\W0-9]*/g, '').length >= 20)
             .random();
         if (!msg) throw 'Could not find a message to quote!';
