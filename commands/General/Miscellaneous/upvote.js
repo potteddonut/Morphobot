@@ -11,7 +11,7 @@ module.exports = class extends Command {
         message.sendEmbed(new MessageEmbed()
             .setAuthor(`Upvoting Morphobot`, this.client.user.displayAvatarURL())
             .setDescription(`You can upvote Morphobot [here](https://discordbots.org/bot/499457091526721538/vote).
-                            Thanks for supporting Morphobot!`)
-            .setColor(message.author.displayAvatarURL()));
+                            Thanks for supporting us!`)
+            .setColor(message.member.displayHexColor));
     }
 }
