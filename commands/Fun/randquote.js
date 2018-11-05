@@ -4,6 +4,7 @@ const {
 const {
     MessageEmbed
 } = require('discord.js');
+const messageLimitHundreds = 1;
 module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
