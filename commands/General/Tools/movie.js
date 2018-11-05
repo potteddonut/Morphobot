@@ -1,9 +1,5 @@
-const {
-    Command
-} = require('klasa');
-const {
-    MessageEmbed
-} = require('discord.js');
+const { Command } = require('klasa');
+const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
 const tmdbAPIkey = '225e25ff3705df9811a4bc3b8198cddc';
 
@@ -21,7 +17,7 @@ module.exports = class extends Command {
         url.search = new URLSearchParams([
             ['api-key', tmdbAPIkey],
             ['query', query]
-        ]);;
+        ]);
 
         const body = await fetch(url)
             .then(response => response.json())
