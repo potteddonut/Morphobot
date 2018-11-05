@@ -29,6 +29,7 @@ module.exports = class extends Command {
         if (!msg) throw 'Could not find a message to quote!';
         return message.sendEmbed(new MessageEmbed()
             .setDescription(msg.content)
-            .setAuthor(msg.author.username, msg.author.displayAvatarURL()));
+            .setColor(msg.member.displayHexColor)
+            .setAuthor(msg.author.tag, msg.author.displayAvatarURL()));
     }
 }
