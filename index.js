@@ -9,8 +9,9 @@ const ModLog = require("./util/modlog");
 
 // "488337189831442432" morphobot lounge
 // "488337556224737290" staff role
-const mbStaff = ['147039883372789761', '116293018742554625'];
+
 // goat, jake
+const mbStaff = ['147039883372789761', '116293018742554625'];
 const mbAdmin = [];
 // stitch, morph
 const mbOwner = ['257847417183928320', '234558143051464704'];

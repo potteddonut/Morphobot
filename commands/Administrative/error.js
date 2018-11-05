@@ -16,4 +16,4 @@ module.exports = class extends Command {
         if (!x) throw "Couldn't find that error.";
         return message.sendMessage(util.codeBlock("js", x.error));
     }
-}
+};
