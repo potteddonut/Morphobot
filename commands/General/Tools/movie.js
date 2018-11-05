@@ -24,9 +24,6 @@ module.exports = class extends Command {
                 if (res.status === 404) return Promise.reject("I couldn't find a movie with that title");
                 if (res.status !== 200) return Promise.reject(`An error occured. Status: ${res.status}`);
                 return res.json();
-            })
-            .catch(() => {
-                throw `I couldn't find a movie with the title **${query}** in page ${page}.`;
             });
 
         const movie = body.results[page - 1];
