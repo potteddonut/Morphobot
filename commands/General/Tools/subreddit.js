@@ -18,7 +18,8 @@ module.exports = class extends Command {
                 if (body.kind === 't5') return subreddit.data;
                 throw `That subreddit doesn't exist!`;
             })
-            .catch(() => { throw this.errorMessage });
+            // .catch(() => { throw this.errorMessage });
+            .catch((error) => { throw error })
 
         return msg.sendEmbed(new MessageEmbed()
             .setTitle(subreddit.title)
