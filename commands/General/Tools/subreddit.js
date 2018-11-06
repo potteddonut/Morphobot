@@ -23,7 +23,7 @@ module.exports = class extends Command {
 
         return msg.sendEmbed(new MessageEmbed()
             .setTitle(subreddit.title)
-            .setDescription(subreddit.public.description)
+            .setDescription(subreddit.public_description)
             .setURL(`https://www.reddit.com/r/${subredditName}`)
             .setColor(6570404)
             .setThumbnail(subreddit.icon_img)
