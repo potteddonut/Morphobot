@@ -15,12 +15,13 @@ module.exports = class extends Command {
 		const commandsRun = this.client.usedCommands.reduce((prev, val) => val.count + prev, 0);
 
 		if (this.client.shard) {
-			const results = await this.client.shard.broadcastEval(`[this.users.size, this.guilds.size, this.channels.size, (process.memoryUsage().heapUsed / 1024 / 1024)]`);
+			const results = await this.client.shard.broadcastEval(`[this.users.size, this.guilds.size, this.channels.size, this.client.usedCommands.reduce((prev, val) => val.count + prev, 0),(process.memoryUsage().heapUsed / 1024 / 1024)]`);
 			for (const result of results) {
 				users += result[0];
 				guilds += result[1];
 				channels += result[2];
-				memory += result[3];
+				commandsProcessed += result[3];
+				memory += result[4];
 			}
 		}
 
