@@ -12,6 +12,7 @@ module.exports = class extends Command {
             .setAuthor(`Upvoting Morphobot`, this.client.user.displayAvatarURL())
             .setDescription(`You can upvote Morphobot [here](https://discordbots.org/bot/499457091526721538/vote).
                             Thanks for supporting us!`)
-            .setColor(message.member.displayHexColor));
+            .setColor(message.member.displayHexColor)
+            .setFooter(`Morphobot`).setTimestamp());
     }
 }
