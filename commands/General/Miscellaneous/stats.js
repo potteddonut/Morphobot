@@ -11,7 +11,7 @@ module.exports = class extends Command {
 	}
 
 	async run(message) {
-		let [users, guilds, channels, memory] = [0, 0, 0, 0];
+		let [users, guilds, channels, commandsProcessed, memory] = [0, 0, 0, 0, 0];
 		const commandsRun = this.client.usedCommands.reduce((prev, val) => val.count + prev, 0);
 
 		if (this.client.shard) {
