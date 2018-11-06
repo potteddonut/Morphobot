@@ -15,7 +15,7 @@ module.exports = class extends Command {
         const subreddit = await fetch(`https://www.reddit.com/r/${subredditName}/about.json`)
             .then(response => response.json())
             .then(body => {
-                if (body.kind === 't5') return subreddit.data;
+                if (body.kind === 't5') return body.subreddit.data;
                 throw `That subreddit doesn't exist!`;
             })
             // .catch(() => { throw this.errorMessage });
