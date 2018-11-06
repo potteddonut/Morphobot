@@ -12,6 +12,7 @@ module.exports = class extends Command {
 
 	async run(message) {
 		let [users, guilds, channels, memory] = [0, 0, 0, 0];
+		const commandsRun = this.client.usedCommands.reduce((prev, val) => val.count + prev, 0);
 
 		if (this.client.shard) {
 			const results = await this.client.shard.broadcastEval(`[this.users.size, this.guilds.size, this.channels.size, (process.memoryUsage().heapUsed / 1024 / 1024)]`);
@@ -29,6 +30,7 @@ module.exports = class extends Command {
 			(users || this.client.users.size).toLocaleString(),
 			(guilds || this.client.guilds.size).toLocaleString(),
 			(channels || this.client.channels.size).toLocaleString(),
+			(commandsProcessed || commandsRun).toLocaleString(),
 			klasaVersion, discordVersion, process.version, message
 		));
 	}

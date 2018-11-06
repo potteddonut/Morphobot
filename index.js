@@ -1,10 +1,6 @@
-const {
-    Client
-} = require('klasa');
-const {
-    config,
-    token
-} = require('./config');
+const { Client } = require('klasa');
+const { config, token } = require('./config');
+const { Collection } = require('discord.js');
 const ModLog = require("./util/modlog");
 
 // "488337189831442432" morphobot lounge
@@ -53,10 +49,12 @@ Client.defaultGuildSchema
         default: false
     });
 
+// client declaration (?)
 class Morphobot extends Client {
     constructor(...args) {
         super(...args);
-        this.moderation = new ModLog(this)
+        this.moderation = new ModLog(this);
+        this.usedCommands = new Collection();
     }
 }
 
