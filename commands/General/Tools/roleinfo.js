@@ -39,7 +39,7 @@ module.exports = class extends Command {
         };
         this.timestamp = new Timestamp('dddd, MMMM d YYYY');
     }
-    run(msg) {
+    run(msg, [role]) {
         const allPermissions = Object.entries(role.permissions.serialize()).filter(perm => perm[1]).map(([perm]) => this.perms[perm]).join(', ');
         return msg.sendEmbed(new MessageEmbed()
             .setColor(role.hexColor || 0xFFFFFF)
