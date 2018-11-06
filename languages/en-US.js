@@ -152,15 +152,15 @@ module.exports = class extends Language {
 			COMMAND_STATS: (memUsage, uptime, users, guilds, channels, commandsProcessed, klasaVersion, discordVersion, processVersion, message) => [
 				'= STATISTICS =',
 				'',
-				`• Mem Usage  :: ${memUsage} MB`,
-				`• Uptime     :: ${uptime}`,
-				`• Users      :: ${users}`,
-				`• Guilds     :: ${guilds}`,
-				`• Channels   :: ${channels}`,
-				`• Processed  :: ${commandsProcessed} commands`,
-				`• Klasa      :: v${klasaVersion}`,
-				`• Discord.js :: v${discordVersion}`,
-				`• Node.js    :: ${processVersion}`,
+				`• Mem Usage     :: ${memUsage} MB`,
+				`• Uptime        :: ${uptime}`,
+				`• Users         :: ${users}`,
+				`• Guilds        :: ${guilds}`,
+				`• Channels      :: ${channels}`,
+				`• Commands Run  :: ${commandsProcessed} commands`,
+				`• Klasa         :: v${klasaVersion}`,
+				`• Discord.js    :: v${discordVersion}`,
+				`• Node.js       :: ${processVersion}`,
 				this.client.options.shardCount ?
 					`• Shard      :: ${((message.guild ? message.guild.shardID : message.channel.shardID) || this.client.options.shardId) + 1} / ${this.client.options.shardCount}` :
 					''
