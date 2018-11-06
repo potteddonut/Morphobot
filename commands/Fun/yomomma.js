@@ -5,7 +5,8 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             aliases: ['yomoma'],
-            description: 'Outputs a yo momma joke.'
+            description: 'Outputs a yo momma joke.',
+            extendedHelp: 'Disclaimer: Some yo momma jokes will NOT go through the bot succesfully.'
         });
     }
     async run(msg) {
