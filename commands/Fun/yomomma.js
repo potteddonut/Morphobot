@@ -15,4 +15,4 @@ module.exports = class extends Command {
             .then(body => body.joke);
         return msg.sendMessage(`📢 ${joke}`);
     }
-}
+};
