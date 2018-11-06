@@ -1,4 +1,4 @@
-const { Command } = require('klasa-pieces');
+const { Command } = require('klasa');
 const fetch = require('node-fetch');
 
 module.exports = class extends Command {
@@ -11,7 +11,7 @@ module.exports = class extends Command {
     async run(msg) {
         const joke = await fetch('https://api.yomomma.info')
             .then(response => response.json())
-            .then(body => body.joke);;
+            .then(body => body.joke);
         return msg.sendMessage(`📢 ${joke}`);
     }
 }
