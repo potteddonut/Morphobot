@@ -8,6 +8,6 @@ module.exports = class extends Command {
         const { body } = await fetch
             .get('https://icanhazdadjoke.com/')
             .set('Accept', 'application/json');
-        return msg.sendMessage(body.joke.length ? `Random pun: **${body.joke}**` : 'Something went wrong. Try again in a bit.')
+        return msg.sendMessage(body.joke.length ? `Random pun: ${body.joke}` : 'Something went wrong. Try again in a bit.')
     }
 };   
