@@ -12,6 +12,9 @@ module.exports = class extends Command {
         super(...args, { description: 'Grabs a random FML story.' });
     }
     async run(msg) {
+
+        await msg.sendMessage("Fetching you a random FML entry.. this may take a while, so.. FML!")
+
         const root = await fetch('http://www.fmylife.com/random')
             .then(result => result.text())
             .then(HTMLParser.parse);
