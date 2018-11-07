@@ -6,6 +6,6 @@ module.exports = class extends Command {
     }
     async run(msg) {
         const { body } = await fetch('https://icanhazdadjoke.com');
-        return msg.sendMessage(body.joke.length ? `Random pun: **${body.joke}**` : 'Something went wrong. Try again in a bit.')
+        return msg.sendMessage(body.length ? `Random pun: **${body}**` : 'Something went wrong. Try again in a bit.')
     }
 };   
