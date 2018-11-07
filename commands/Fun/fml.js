@@ -24,7 +24,7 @@ module.exports = class extends Command {
         const signature = root.querySelector('.panel-content div.votes span.vote div');
         const link = `http://www.fmylife.com${href.rawAttrs.replace(/^href=|"/g, '')}`;
         const cardId = card.rawAttrs.replace(/\D/g, '');
-        let signatureDisplay = `Author and date of this FML unknown`;
+        let signatureDisplay = 'Author and date of this FML unknown';
         if (signature.childNodes.length === 1) {
             signatureDisplay = signature.childNodes[0].text;
         } else if (signature.childNodes.length === 3) {
