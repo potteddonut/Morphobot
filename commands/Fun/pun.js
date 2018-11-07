@@ -5,7 +5,8 @@ module.exports = class extends Command {
         super(...args, { description: 'Generates a random pun.' });
     }
     async run(msg) {
-        const { body } = await fetch('https://icanhazdadjoke.com');
-        return msg.sendMessage(body.length ? `Random pun: **${body}**` : 'Something went wrong. Try again in a bit.')
+        const { body } = await fetch('https://icanhazdadjoke.com')
+            .then(result => result.json());
+        return msg.sendMessage(body.joke.length ? `Random pun: **${body.joke}**` : 'Something went wrong. Try again in a bit.')
     }
 };   
