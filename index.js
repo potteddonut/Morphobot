@@ -1,7 +1,8 @@
 const { Client } = require('klasa');
 const { config, token } = require('./config');
 const { Collection } = require('discord.js');
-const ModLog = require("./util/modlog");
+const ModLog = require('./util/modlog');
+const Responder = require('./lib/Responder')
 
 // "488337189831442432" morphobot lounge
 // "488337556224737290" staff role
@@ -48,6 +49,18 @@ Client.defaultGuildSchema
     .add("antiinvite", 'boolean', {
         default: false
     });
+
+// this uses an .extend method on Structures, a discord.js feature, to make our responder usable with message.
+const { Structures } = require('discord.js');
+Structures.extend('Message', Message => {
+    class MbMessage extends Message {
+        constructor(...args) {
+            super(...args);
+            this.responder = new Responder(this);
+        }
+    }
+    return MbMessage;
+});
 
 // client declaration (?)
 class Morphobot extends Client {
