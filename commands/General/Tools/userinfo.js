@@ -11,7 +11,7 @@ module.exports = class extends Command {
 		super(...args, {
 			aliases: ['ui', 'uinfo'],
 			description: 'Get information of a user in the guild.',
-			usage: '[Member:username]'
+			usage: '[Member:member]'
 		});
 		this.statuses = {
 			online: '<:online:500231634302271488>',
@@ -21,7 +21,7 @@ module.exports = class extends Command {
 		};
 		this.timestamp = new Timestamp('d MMMM YYYY');
 	}
-	run(message, [member]) {
+	run(message, [member = message.member]) {
 		return message.sendEmbed(new MessageEmbed()
 			.setColor(member.displayHexColor || 0xFFFFFF)
 			.setThumbnail(member.user.displayAvatarURL())
