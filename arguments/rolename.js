@@ -1,7 +1,8 @@
 const {
     Argument,
     util: {
-        regExpEsc
+        regExpEsc,
+        codeBlock
     }
 } = require('klasa');
 const {
@@ -43,8 +44,13 @@ module.exports = class extends Argument {
                 throw `${possible.name} Must be a valid name, id or role mention`;
             case 1:
                 return querySearch[0];
-            default:
-                throw `Found multiple matches: \`${querySearch.map(role => role.name).join('`, `')}\``;
+            default: {
+                if (querySearch.length > 5) querySearch = querySearch.splice(0, 5);
+                const display = querySearch.map((role, i) => `${i + 1}. ${role.name}`).join('\n');
+                const response = await msg.responder.awaitNumberedResponse(`Found **${querySearch.length}** possible matches. Choose a number to select your option.
+                ${codeBlock('', display)}`, [1, querySearch.length]);
+                if (response) return querySearch[response - 1];
+            }
         }
     }
 
