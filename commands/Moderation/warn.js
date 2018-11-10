@@ -17,7 +17,7 @@ module.exports = class extends Command {
         if (member === message.author) return message.send("You.. can't kick yourself.");
         member = await message.guild.members.fetch(member);
 
-        if (member.roles.highest.position >= message.member.roles.highest.position) return message.send("You can't kick members of the same or higher rank!")
+        if (member.roles.highest.position >= message.member.roles.highest.position) return message.send("You can't warn members of the same or higher rank!")
 
         reason = reason ? reason.join(" ") : `No reason was provided. Use ${message.guild.settings.prefix}reason to update.`;
 
