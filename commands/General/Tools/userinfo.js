@@ -21,7 +21,7 @@ module.exports = class extends Command {
 		};
 		this.timestamp = new Timestamp('d MMMM YYYY');
 	}
-	run(message, [member = message.member]) {
+	run(message, [member]) {
 		return message.sendEmbed(new MessageEmbed()
 			.setColor(member.displayHexColor || 0xFFFFFF)
 			.setThumbnail(member.user.displayAvatarURL())
