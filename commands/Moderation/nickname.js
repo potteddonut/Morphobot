@@ -11,7 +11,7 @@ module.exports = class extends Command {
             aliases: ['nick'],
             runIn: ['text'],
             requiredPermissions: ['MANAGE_NICKNAMES'],
-            usage: '<user:member> <nickname:str>[...]',
+            usage: '[user:member] <nickname:str>[...]',
             usageDelim: ' '
         });
     }
