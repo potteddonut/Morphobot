@@ -18,6 +18,6 @@ module.exports = class extends Command {
         ]);
         const { body } = await superagent.get(url.href)
             .catch(() => msg.responder.error('An unexpected error occured with the API. Try again in a bit!'));
-        return msg.channel.sendFine(body.message);
+        return msg.channel.sendFile(body.message);
     }
 };
