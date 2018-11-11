@@ -1,4 +1,7 @@
 # Morphobot
+
+[![Discord Bots](https://discordbots.org/api/widget/499457091526721538.svg)](https://discordbots.org/bot/499457091526721538)
+
 Morphobot is a discord.js bot written on the Klasa framework.
 
 Initiated on the 10th of November 2018, this current version is a revive of the old, shutdown Morphobot,
