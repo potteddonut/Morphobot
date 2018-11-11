@@ -17,12 +17,16 @@ module.exports = class extends Command {
     }
     async run(message, [user = message.member, ...newNickName]) {
         newNickName = newNickName.join(this.usageDelim);
-        if (message.flags.reset) { await user.setNickname(message.author.username) };
+        if (message.flags.reset) this.reset(message.author.username);
         await user.setNickname(newNickName)
             .then(() => message.send(`Succesfully set **${user.user.tag}**'s nickname to **${newNickName}**.`))
             .catch(() => {
                 throw "I can't change that user's nickname. Make sure their role is below mine.";
             });
+    }
+    async reset(msg) {
+        user.setNickname(msg);
+        msg.responder.success(`Succesfully reset your nickname back to **${newNickname}**`);
     }
 
 };
