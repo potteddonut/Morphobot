@@ -13,7 +13,7 @@ module.exports = class extends Command {
     }
     async run(message, [code]) {
         const x = await this.client.providers.default.get("errors", code).catch(() => null);
-        if (!x) throw "Couldn't find that error.";
+        if (!x) { message.responder.error("That error code was not found.") }
         return message.sendMessage(util.codeBlock("js", x.error));
     }
 };
