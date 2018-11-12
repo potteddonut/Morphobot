@@ -2,7 +2,8 @@ const { Client } = require('klasa');
 const { config, token } = require('./config');
 const { Collection } = require('discord.js');
 const ModLog = require('./util/modlog');
-const Responder = require('./lib/Responder')
+const Responder = require('./lib/Responder');
+const IdioticApi = require('./lib/IdioticApiClient');
 
 // "488337189831442432" morphobot lounge
 // "488337556224737290" staff role
@@ -18,7 +19,7 @@ Client.defaultPermissionLevels
     .add(5, (client, message) => message.member && message.member.roles.has(message.guild.settings.get("modRole")), {
         fetch: true
     })
-    .add(6, (client, message) => message.member && message.member.permissions.has('MANAGE_GUILD'), {
+    .add(6, (client, message) => message.member && message.member.roles.has(message.guild.settings.get("adminRole")), {
         fetch: true
     })
     .add(7, (client, message) => message.guild && message.guild.ownerID === message.author.id, {
@@ -45,6 +46,7 @@ Client.defaultGuildSchema
     // Moderation settings go here.
     .add("modlogs", "TextChannel")
     .add("modRole", "Role")
+    .add("adminRole", "Role")
     .add("muteRole", "Role")
     .add("antiinvite", 'boolean', {
         default: false
@@ -68,6 +70,7 @@ class Morphobot extends Client {
         super(...args);
         this.moderation = new ModLog(this);
         this.usedCommands = new Collection();
+        this.idioticAPI = new IdioticApi(config.api_keys.idiotic_api, { dev: true });
     }
 }
 
