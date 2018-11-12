@@ -70,7 +70,7 @@ class Morphobot extends Client {
         super(...args);
         this.moderation = new ModLog(this);
         this.usedCommands = new Collection();
-        this.idioticAPI = new IdioticApi(config.api_keys.idiotic_api, { dev: true });
+        // this.idioticAPI = new IdioticApi(config.api_keys.idiotic_api, { dev: true });
     }
 }
 
