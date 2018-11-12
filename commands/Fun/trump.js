@@ -11,6 +11,7 @@ module.exports = class extends Command {
     }
     async run(msg, [text]) {
         if (!text) return msg.responder.error('You need to provide some text for Trump to tweet!');
+        await msg.sendMessage("Making the president tweet... hold up!")
         const url = new URL('https://nekobot.xyz/api/imagegen');
         url.search = new URLSearchParams([
             ['type', 'trumptweet'],
