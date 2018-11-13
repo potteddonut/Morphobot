@@ -2,3 +2,5 @@ node_modules
 .vscode
 bwd
 config.js
+package.json
+package-lock.json
