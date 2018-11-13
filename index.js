@@ -10,8 +10,8 @@ const Responder = require('./lib/Responder');
 // goat, jake
 const mbStaff = ['147039883372789761', '116293018742554625'];
 const mbAdmin = [];
-// stitch, morph
-const mbOwner = ['257847417183928320', '234558143051464704'];
+// stitch, morph, ladybug
+const mbDev = ['257847417183928320', '234558143051464704', '292690616285134850'];
 
 // Morphobot's custom permission level system and configuration.
 Client.defaultPermissionLevels
@@ -36,13 +36,13 @@ Client.defaultPermissionLevels
 
 Client.defaultGuildSchema
 
-// SettingsGateway key types
-// any, boolean, categoryChannel, channel (accepts any kind of channel),
-// command (Command instance, resolves a command.), float, guild, integer,
-// language (Language instance, resolves a language.), number, role, string, textchannel,
-// url, user, voicechannel.
+	// SettingsGateway key types
+	// any, boolean, categoryChannel, channel (accepts any kind of channel),
+	// command (Command instance, resolves a command.), float, guild, integer,
+	// language (Language instance, resolves a language.), number, role, string, textchannel,
+	// url, user, voicechannel.
 
-// Moderation settings go here.
+	// Moderation settings go here.
 	.add('modlogs', 'TextChannel')
 	.add('modRole', 'Role')
 	.add('adminRole', 'Role')
