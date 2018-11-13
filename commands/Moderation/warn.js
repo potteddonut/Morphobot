@@ -20,33 +20,16 @@ module.exports = class extends Command {
 
 		if (member.roles.highest.position >= message.member.roles.highest.position) return message.send("You can't warn members of the same or higher rank!");
 
-<<<<<<< HEAD
-        if (message.guild.settings.get("modlogs")) {
-            this.client.moderation.warn({
-                guild: message.guild,
-                target: member.user,
-                moderator: message.author,
-                reason
-            })
-        }
-        await member.user.send(`You have been warned in \`${message.guild.name}\` for \`${reason}\``).catch(() => null);
-        return message.responder.success(`\`${member.user.tag}\` has been succesfully warned.`)
-    }
-}
-=======
-		reason = reason ? reason.join(' ') : `No reason was provided. Use ${message.guild.settings.prefix}reason to update.`;
-
-		if (message.guild.settings.get('modlogs')) {
+		if (message.guild.settings.get("modlogs")) {
 			this.client.moderation.warn({
 				guild: message.guild,
 				target: member.user,
 				moderator: message.author,
 				reason
-			});
+			})
 		}
 		await member.user.send(`You have been warned in \`${message.guild.name}\` for \`${reason}\``).catch(() => null);
-		return message.send(`\`${member.user.tag}\` has been succesfully warned.`);
+		return message.responder.success(`\`${member.user.tag}\` has been succesfully warned.`)
 	}
+}
 
-};
->>>>>>> cdd976f73deefeb4a4fba339c43c5a09e087c8fb
