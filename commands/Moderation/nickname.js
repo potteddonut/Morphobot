@@ -1,32 +1,28 @@
 const {
-    Command
+	Command
 } = require('klasa');
 
 module.exports = class extends Command {
 
-    constructor(...args) {
-        super(...args, {
-            description: 'Changes the nickname of a user.',
-            permissionLevel: 5,
-            aliases: ['nick'],
-            runIn: ['text'],
-            requiredPermissions: ['MANAGE_NICKNAMES'],
-            usage: '[user:member] <nickname:str>[...]',
-            usageDelim: ' '
-        });
-    }
-    async run(message, [user = message.member, ...newNickName]) {
-        newNickName = newNickName.join(this.usageDelim);
-        if (message.flags.reset) this.reset(message.author.username);
-        await user.setNickname(newNickName)
-            .then(() => message.send(`Succesfully set **${user.user.tag}**'s nickname to **${newNickName}**.`))
-            .catch(() => {
-                throw "I can't change that user's nickname. Make sure their role is below mine.";
-            });
-    }
-    async reset(msg) {
-        user.setNickname(msg);
-        msg.responder.success(`Succesfully reset your nickname back to **${newNickname}**`);
-    }
+	constructor(...args) {
+		super(...args, {
+			description: 'Changes the nickname of a user.',
+			permissionLevel: 5,
+			aliases: ['nick'],
+			runIn: ['text'],
+			requiredPermissions: ['MANAGE_NICKNAMES'],
+			usage: '[user:member] <nickname:str>[...]',
+			usageDelim: ' '
+		});
+	}
+	async run(message, [user = message.member, ...newNickName]) {
+		newNickName = newNickName.join(this.usageDelim);
+		if (message.flags.reset) this.reset(message.author.username);
+		await user.setNickname(newNickName)
+			.then(() => message.send(`Succesfully set **${user.user.tag}**'s nickname to **${newNickName}**.`))
+			.catch(() => {
+				throw "I can't change that user's nickname. Make sure their role is below mine.";
+			});
+	}
 
 };

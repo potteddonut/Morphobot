@@ -13,7 +13,7 @@ module.exports = class extends Language {
 			PREFIX_REMINDER: (prefix = `@${this.client.user.tag}`) => `The prefix${Array.isArray(prefix) ?
 				`es for this guild are: ${prefix.map(pre => `\`${pre}\``).join(', ')}` :
 				` in this guild is set to: \`${prefix}\``
-				}`,
+			}`,
 			SETTING_GATEWAY_EXPECTS_GUILD: 'The parameter <Guild> expects either a Guild or a Guild Object.',
 			SETTING_GATEWAY_VALUE_FOR_KEY_NOEXT: (data, key) => `The value ${data} for the key ${key} does not exist.`,
 			SETTING_GATEWAY_VALUE_FOR_KEY_ALREXT: (data, key) => `The value ${data} for the key ${key} already exists.`,
@@ -117,12 +117,12 @@ module.exports = class extends Language {
 			],
 			COMMAND_INVITE_DESCRIPTION: 'Displays the join guild link of the bot.',
 			COMMAND_INFO: [
-				"Morphobot is a revival of an old discord bot of the same name, however this time back with",
-				"faster command response times, reliable commands, and an experienced development team. ",
-				"Morphobot is a bot written in discord.js, built on top of the Klasa framework.",
-				"\n",
-				"You can use `mb!help` to receive a list of commands in DMs.",
-				"Morphobot is owned by `Morphoxeris#1111."
+				'Morphobot is a revival of an old discord bot of the same name, however this time back with',
+				'faster command response times, reliable commands, and an experienced development team. ',
+				'Morphobot is a bot written in discord.js, built on top of the Klasa framework.',
+				'\n',
+				'You can use `mb!help` to receive a list of commands in DMs.',
+				'Morphobot is owned by `Morphoxeris#1111.'
 			],
 			COMMAND_INFO_DESCRIPTION: 'Provides some information about this bot.',
 			COMMAND_HELP_DESCRIPTION: 'Display help for a command.',

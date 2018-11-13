@@ -1,9 +1,4 @@
-const {
-	Command,
-	util: {
-		isFunction
-	}
-} = require('klasa');
+const { Command, util: { isFunction } } = require('klasa');
 
 module.exports = class extends Command {
 
@@ -45,17 +40,17 @@ module.exports = class extends Command {
 		}
 
 		await message.author.send(helpMessage, {
-				split: {
-					char: '\u200b'
-				}
-			})
+			split: {
+				char: '\u200b'
+			}
+		})
 			.then(() => {
 				if (message.channel.type !== 'dm') message.sendLocale('COMMAND_HELP_DM');
 			})
 			.catch(() => {
 				if (message.channel.type !== 'dm') message.sendLocale('COMMAND_HELP_NODM');
 			});
-
+		return null;
 	}
 
 	async buildHelp(message) {
@@ -69,15 +64,15 @@ module.exports = class extends Command {
 
 		await Promise.all(this.client.commands.map((command) =>
 			this.client.inhibitors.run(message, command, true)
-			.then(() => {
-				if (!help.hasOwnProperty(command.category)) help[command.category] = {};
-				if (!help[command.category].hasOwnProperty(command.subCategory)) help[command.category][command.subCategory] = [];
-				const description = isFunction(command.description) ? command.description(message.language) : command.description;
-				help[command.category][command.subCategory].push(`${prefix}${command.name.padEnd(longest)} :: ${description}`);
-			})
-			.catch(() => {
+				.then(() => {
+					if (!help.hasOwnProperty(command.category)) help[command.category] = {};
+					if (!help[command.category].hasOwnProperty(command.subCategory)) help[command.category][command.subCategory] = [];
+					const description = isFunction(command.description) ? command.description(message.language) : command.description;
+					help[command.category][command.subCategory].push(`${prefix}${command.name.padEnd(longest)} :: ${description}`);
+				})
+				.catch(() => {
 				// noop
-			})
+				})
 		));
 
 		return help;
