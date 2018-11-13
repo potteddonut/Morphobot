@@ -30,7 +30,7 @@ Client.defaultPermissionLevels
 	.add(9, (client, message) => mbAdmin.includes(message.author.id), {
 		fetch: true
 	})
-	.add(10, (client, message) => mbOwner.includes(message.author.id), {
+	.add(10, (client, message) => mbDev.includes(message.author.id), {
 		break: true
 	});
 
