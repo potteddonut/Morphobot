@@ -30,6 +30,6 @@ module.exports = class extends Command {
             })
         }
         await member.user.send(`You have been warned in \`${message.guild.name}\` for \`${reason}\``).catch(() => null);
-        return message.send(`\`${member.user.tag}\` has been succesfully warned.`)
+        return message.responder.success(`\`${member.user.tag}\` has been succesfully warned.`)
     }
 }

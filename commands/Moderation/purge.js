@@ -25,7 +25,7 @@ module.exports = class extends Command {
         };
         messages = messages.array().slice(0, limit);
         await message.channel.bulkDelete(messages);
-        return message.send(`Succesfully deleted ${messages.length} messages, out of ${limit}.`)
+        return message.responder.success(`Succesfully deleted ${messages.length} messages, out of ${limit}.`)
             .then(message => message.delete({
                 timeout: 3000
             }));

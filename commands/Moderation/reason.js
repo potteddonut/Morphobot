@@ -28,7 +28,7 @@ module.exports = class extends Command {
         if (!log) throw "That's not a valid case number!"
 
         const channel = message.guild.channels.get(message.guild.settings.get("modlogs"));
-        if (!channel) throw "The modlog channel set cannot be accessed!";
+        if (!channel) message.responder.error("The modlog channel set cannot be accessed!");
         const messages = await channel.messages.fetch({
             limit: 100
         });
@@ -57,7 +57,7 @@ module.exports = class extends Command {
         const oldReason = log.reason;
         modlogs.logs[selected - 1].reason = reason;
         await this.client.providers.default.replace('modlogs', message.guild.id, modlogs);
-        return message.send(`Case ${selected} has been succesfully updated. ${util.codeBlock('http', [
+        return message.responder.success(`Case ${selected} has been succesfully updated. ${util.codeBlock('http', [
             `Old reason: ${oldReason || `Not set.`}`,
             `New reason: ${reason}`
         ].join('\n'))}`);
