@@ -1,6 +1,6 @@
 const { Command } = require('klasa');
 const { MessageEmbed } = require('discord.js');
-const superagent = require('superagent');
+const fetch = require('node-fetch');
 module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
@@ -10,7 +10,7 @@ module.exports = class extends Command {
         });
     }
     async run(msg, [query]) {
-        const article = await superagent(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`)
+        const article = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`)
             .then(response => response.json())
             .catch(() => { throw msg.responder.error("Couldn't find a wiki article by that title.") });
 
