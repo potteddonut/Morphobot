@@ -3,6 +3,7 @@ const { config, token } = require('./config');
 const { Collection } = require('discord.js');
 const ModLog = require('./util/modlog');
 const Responder = require('./lib/Responder');
+const IdioticApi = require('idiotic-api');
 
 // "488337189831442432" morphobot lounge
 // "488337556224737290" staff role
@@ -72,7 +73,7 @@ class Morphobot extends Client {
 		super(...args);
 		this.moderation = new ModLog(this);
 		this.usedCommands = new Collection();
-		// this.idioticAPI = new IdioticApi(config.api_keys.idiotic_api, { dev: true });
+		this.idioticAPI = new IdioticApi(config.api_keys.idiotic_api, { dev: true });
 	}
 
 }
