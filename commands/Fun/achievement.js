@@ -1,4 +1,5 @@
 const { Command } = require('klasa');
+const { MessageAttachment } = require('discord.js');
 module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
@@ -8,6 +9,8 @@ module.exports = class extends Command {
         });
     }
     async run(msg, [text]) {
-        await msg.channel.sendFile(this.client.idioticAPI.achievement(msg.author.displayAvatarURL({ format: 'png', size: 32 }), text), 'achievement.png');
+        await msg.channel.send(new MessageAttachment(
+            await this.client.idioticAPI.achievement(message.author.displayAvatarURL({ format: 'png', size: 32 }), text),
+            'achievement.png'));
     }
 };
