@@ -3,7 +3,7 @@ const { config, token } = require('./config');
 const { Collection } = require('discord.js');
 const ModLog = require('./util/modlog');
 const Responder = require('./lib/Responder');
-const IdioticApi = require('idiotic-api');
+const IdioticApi = require('./lib/IdioticApiClient');
 
 // "488337189831442432" morphobot lounge
 // "488337556224737290" staff role
