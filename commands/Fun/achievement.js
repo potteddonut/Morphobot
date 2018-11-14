@@ -10,7 +10,7 @@ module.exports = class extends Command {
     }
     async run(msg, [text]) {
         await msg.channel.send(new MessageAttachment(
-            await this.client.idioticAPI.achievement(message.author.displayAvatarURL({ format: 'png', size: 32 }), text),
+            await this.client.idioticAPI.achievement(msg.author.displayAvatarURL({ format: 'png', size: 32 }), text),
             'achievement.png'));
     }
 };
