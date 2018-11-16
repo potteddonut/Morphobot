@@ -11,13 +11,12 @@ module.exports = class extends Command {
 			aliases: ['nick'],
 			runIn: ['text'],
 			requiredPermissions: ['MANAGE_NICKNAMES'],
-			usage: '[user:member] <nickname:str>[...]',
+			usage: '[user:member] [nickname:str][...]',
 			usageDelim: ' '
 		});
 	}
-	async run(message, [user = message.member, ...newNickName]) {
+	async run(message, [user = message.member, ...newNickName = ['']]) {
 		newNickName = newNickName.join(this.usageDelim);
-		if (message.flags.reset) this.reset(message.author.username);
 		await user.setNickname(newNickName)
 			.then(() => message.send(`Succesfully set **${user.user.tag}**'s nickname to **${newNickName}**.`))
 			.catch(() => {
