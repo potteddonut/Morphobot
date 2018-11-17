@@ -2,7 +2,7 @@ const { Command } = require('klasa');
 const { MessageEmbed } = require('discord.js');
 const superagent = require('superagent');
 const baseURL = 'https://od-api.oxforddictionaries.com/api/v1/entries/en/';
-const { api_keys: { oxford_app_id, oxford_app_key } } = require(`${process.cwd()}/config`);
+const { api_keys: oxford_app_id, oxford_app_key } = require(`${process.cwd()}/config`);
 
 module.exports = class extends Command {
     constructor(...args) {
