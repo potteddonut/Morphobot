@@ -2,7 +2,7 @@ const { Command } = require('klasa');
 const { MessageEmbed } = require('discord.js');
 const superagent = require('superagent');
 const baseURL = 'https://od-api.oxforddictionaries.com/api/v1/entries/en/';
-const api_keys = require(`${process.cwd()}/config`).config.api_keys;
+const { config: { api_keys: { oxford_app_id, oxford_app_key } } } = require(`${process.cwd()}/config`);
 
 const oxford_app_id = api_keys.oxford_app_id;
 const oxford_app_key = api_keys.oxford_app_key;
