@@ -15,7 +15,7 @@ module.exports = class extends Command {
     }
     async run(msg, [word]) {
         console.log(oxford_app_id, oxford_app_key);
-        const { body: lookup } = await superagent.get(baseURL + encodeURIComponent(word), { headers: { app_id: oxford_app_id, app_key: oxford_app_key } }).catch(() => null);
+        const { res: lookup } = await superagent.get(baseURL + encodeURIComponent(word), { headers: { app_id: oxford_app_id, app_key: oxford_app_key } }).catch(() => null);
         if (!lookup || !lookup.results) throw "Unknown word.";
         const res = lookup.results[0];
         const definitions = res.lexicalEntries.map(obj => `\`[${obj.lexicalCategory}]\` **${obj.text}** (${obj.pronunciations[0].phoneticSpelling})\n _${obj.entries[0].senses[0].definitions[0]}_`)
