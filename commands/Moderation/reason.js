@@ -9,44 +9,6 @@ const {
 
 module.exports = class extends Command {
 
-<<<<<<< HEAD
-        const channel = message.guild.channels.get(message.guild.settings.get("modlogs"));
-        if (!channel) message.responder.error("The modlog channel set cannot be accessed!");
-        const messages = await channel.messages.fetch({
-            limit: 100
-        });
-        const msg = messages.find(mes => mes.author.id === this.client.user.id && mes.embeds.length > 0 && mes.embeds[0].footer && mes.embeds[0].footer.text === `Case ${selected}`);
-        if (msg) { // msg in this case refers to the constant that we defined above.
-            const embed = msg.embeds[0];
-            const [type, user] = embed.description.split('\n');
-            embed.description = [
-                type,
-                user,
-                `**Reason**: ${reason}`
-            ].join('\n')
-            await msg.edit({
-                embed
-            });
-        } else {
-            await message.sendEmbed(new MessageEmbed()
-                .setAuthor(log.moderator.tag, log.moderator.avatarURL())
-                .setDescription([
-                    `**Type**: ${log.type}`,
-                    `**User**: ${log.user.tag} (${log.user.id})`,
-                    `**Reason**: ${reason}`
-                ])
-                .setFooter(`Case ${selected}`).setTimestamp())
-        }
-        const oldReason = log.reason;
-        modlogs.logs[selected - 1].reason = reason;
-        await this.client.providers.default.replace('modlogs', message.guild.id, modlogs);
-        return message.responder.success(`Case ${selected} has been succesfully updated. ${util.codeBlock('http', [
-            `Old reason: ${oldReason || `Not set.`}`,
-            `New reason: ${reason}`
-        ].join('\n'))}`);
-    }
-};
-=======
 	constructor(...args) {
 		super(...args, {
 			runIn: ['text'],
@@ -106,4 +68,3 @@ module.exports = class extends Command {
 	}
 
 };
->>>>>>> cdd976f73deefeb4a4fba339c43c5a09e087c8fb
