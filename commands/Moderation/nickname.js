@@ -16,9 +16,9 @@ module.exports = class extends Command {
 		});
 	}
 	async run(message, [user = message.member, newNickName]) {
-		newNickName = newNickName.join(this.usageDelim);
 		if (!newNickName) user.setNickname(user.user.username).then(() => message.send("Succesfully reset your nickname."))
-			.catch(() => { throw "I am unable to reset your username." })
+			.catch(() => { throw "I am unable to reset your username." });
+		newNickName = newNickName.join(this.usageDelim);
 		await user.setNickname(newNickName)
 			.then(() => message.send(`Succesfully set **${user.user.tag}**'s nickname to **${newNickName}**.`))
 			.catch(() => {
