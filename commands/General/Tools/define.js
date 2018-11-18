@@ -26,7 +26,7 @@ module.exports = class extends Command {
                 obj.entries[0].senses[0].examples.map(ex => `​_- ${ex.text}_`).join('\n')
             ].join('\n'));
         return msg.sendEmbed(new MessageEmbed()
-            .setTitle(`${res.lexicalEntries.length} results${res.lexicalEntries.length !== 1 ? 's' : ''} for ${res.id}:`)
+            .setTitle(`${res.lexicalEntries.length} result${res.lexicalEntries.length !== 1 ? 's' : ''} for ${res.id}:`)
             .setDescription(definitions.join('\n\n'))
             .setColor(msg.guild ? msg.member.displayColor : 'RANDOM'));
     }
