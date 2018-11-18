@@ -1,6 +1,6 @@
 const { Command } = require('klasa');
 const { MessageEmbed } = require('discord.js');
-const superagent = require('superagent');
+const snek = require('snekfetch');
 const baseURL = 'https://od-api.oxforddictionaries.com/api/v1/entries/en/';
 const { config: { api_keys: { oxford_app_id, oxford_app_key } } } = require(`${process.cwd()}/config`);
 
@@ -14,13 +14,19 @@ module.exports = class extends Command {
         });
     }
     async run(msg, [word]) {
-        console.log(oxford_app_id, oxford_app_key);
-        const { res: lookup } = await superagent.get(baseURL + encodeURIComponent(word)).set('app_id', oxford_app_id).set('app_key', oxford_app_key).catch(() => null);
-        if (!lookup || !lookup.results) throw "Unknown word.";
-        const res = lookup.results[0];
-        const definitions = res.lexicalEntries.map(obj => `\`[${obj.lexicalCategory}]\` **${obj.text}** (${obj.pronunciations[0].phoneticSpelling})\n _${obj.entries[0].senses[0].definitions[0]}_`)
-        return msg.channel.sendEmbed(new MessageEmbed()
-            .setTitle(`${res.lexicalEntries.length} result${res.lexicalEntries.length !== 1 ? 's' : ''} for ${res.id}:`)
+        const get = await snek.get(baseURL + encodeURIComponent(word), { headers: { app_id: oxford_app_id, app_key: oxford_app_key } }).catch(() => null);
+        if (!get || !get.body || !get.body.results) return msg.responder.error('Unknown word');
+        const res = get.body.results[0];
+        const definitions = res.lexicalEntries
+            .map(obj => [
+                `​\`​[${obj.lexicalCategory}]\`​ **${obj.text}** (${obj.pronunciations[0].phoneticSpelling})`,
+                `​${obj.entries[0].senses[0].definitions
+                    ? obj.entries[0].senses[0].definitions[0]
+                    : obj.entries[0].senses[0].short_definitions[0]}`,
+                obj.entries[0].senses[0].examples.map(ex => `​_- ${ex.text}_`).join('\n')
+            ].join('\n'));
+        return msg.sendEmbed(new MessageEmbed()
+            .setTitle(`${res.lexicalEntries.length} results${res.lexicalEntries.length !== 1 ? 's' : ''} for ${res.id}:`)
             .setDescription(definitions.join('\n\n'))
             .setColor(msg.guild ? msg.member.displayColor : 'RANDOM'));
     }
