@@ -6,7 +6,7 @@ module.exports = class extends Command {
 		super(...args, {
 			aliases: ['ui', 'uinfo'],
 			description: 'Get information of a user in the guild.',
-			usage: '[Member:member]'
+			usage: '[Member:membername]'
 		});
 		this.statuses = {
 			online: '<:online:500231634302271488>',
