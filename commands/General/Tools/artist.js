@@ -21,7 +21,7 @@ module.exports = class extends Command {
             .then(response => response.json())
             .then(response => response.artists.items[0])
             .catch(() => { throw msg.responder.error('An unexpected error occured. Try again in a bit.'); });
-        if (artist) return msContentScript.sendMessage(artist.external_urls.spotify);
+        if (artist) return msg.sendMessage(artist.external_urls.spotify);
         throw "Couldn't find any artist with that name."
     }
 };
