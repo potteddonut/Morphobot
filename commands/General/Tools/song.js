@@ -9,7 +9,7 @@ module.exports = class extends Command {
         })
     }
     async run(msg, [query]) {
-        if (!this.client._spotifyToken) return this.client.emit('wtf', 'Spotify Token is undefined.');
+        if (!this.client._spotifyToken) return this.client.emit('error', 'Spotify Token is undefined.');
         const song = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track&limit=1`,
             {
                 headers: {
