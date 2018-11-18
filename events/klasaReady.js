@@ -12,6 +12,7 @@ module.exports = class extends Event {
 	}
 
 	async run() {
+		this.client.schedule.create("getSpotifyToken", "0 * * * *");
 		this.client.user.setActivity(`mb!help | ${this.client.guilds.size} servers`, {
 			type: 'PLAYING'
 		});
