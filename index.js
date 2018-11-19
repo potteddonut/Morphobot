@@ -10,30 +10,19 @@ const IdioticApi = require('./lib/IdioticApiClient');
 
 // goat, jake
 const mbStaff = ['147039883372789761', '116293018742554625'];
-const mbAdmin = [];
+const mbAdmin = []
 // stitch, morph, ladybug
 const mbDev = ['257847417183928320', '234558143051464704', '292690616285134850'];
 
 // Morphobot's custom permission level system and configuration.
+// The mylevel command iterates through these levels from 10 to 0 to check which permission level the author has.
 Client.defaultPermissionLevels
-	.add(5, (client, message) => message.member && message.member.roles.has(message.guild.settings.get('modRole')), {
-		fetch: true
-	})
-	.add(6, (client, message) => message.member && message.member.roles.has(message.guild.settings.get('adminRole')), {
-		fetch: true
-	})
-	.add(7, (client, message) => message.guild && message.guild.ownerID === message.author.id, {
-		fetch: true
-	})
-	.add(8, (client, message) => mbStaff.includes(message.author.id), {
-		fetch: true
-	})
-	.add(9, (client, message) => mbAdmin.includes(message.author.id), {
-		fetch: true
-	})
-	.add(10, (client, message) => mbDev.includes(message.author.id), {
-		break: true
-	});
+	.add(5, (client, message) => message.member && message.member.roles.has(message.guild.settings.get('modRole')), { fetch: true })
+	.add(6, (client, message) => message.member && message.member.roles.has(message.guild.settings.get('adminRole')), { fetch: true })
+	.add(7, (client, message) => message.guild && message.guild.ownerID === message.author.id, { fetch: true })
+	.add(8, (client, message) => mbStaff.includes(message.author.id), { fetch: true })
+	.add(9, (client, message) => mbAdmin.includes(message.author.id), { fetch: true })
+	.add(10, (client, message) => mbDev.includes(message.author.id), { break: true });
 
 Client.defaultGuildSchema
 
