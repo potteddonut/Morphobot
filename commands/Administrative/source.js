@@ -6,7 +6,7 @@ module.exports = class extends Command {
         super(...args, {
             description: 'Returns source code from the bot.',
             permissionLevel: 10,
-            alises: ['src', 'sourcecode', 'code'],
+            aliases: ['src', 'sourcecode', 'code'],
             guarded: true,
             usage: '<piece:piece>'
         });
