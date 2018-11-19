@@ -10,16 +10,16 @@ but this time back with faster command response times, easier handling and more 
 Morphobot is owned by `Morphoxeris#1111`.
 
 Github Commit Tags -
-`chore`: update deps\n
-`deps`: when modifying them\n
-`src`: source code changes (mostly with klasa)\n
-`misc`: minor changes\n
-`typings`: update typings\n
-`ci`: change ci conf\n
-`lint`: fixing lint errors\n
-`feat`: feature request\n
-`cleanup`: code cleanup\n
-`refactors`: code refactors\n
+`chore`: update deps | 
+`deps`: when modifying them | 
+`src`: source code changes (mostly with klasa) | 
+`misc`: minor changes | 
+`typings`: update typings | 
+`ci`: change ci conf | 
+`lint`: fixing lint errors | 
+`feat`: feature request | 
+`cleanup`: code cleanup | 
+`refactors`: code refactors | 
 `wip`: a work in progress commit
 
 (Credits to TheFloppyBanana and Kyra)
