@@ -14,6 +14,7 @@ module.exports = class extends Command {
 	}
 
 	run(msg, [user]) {
+		if (user = this.client.owner) return msg.sendMessage("You can't insult the supreme lord of Morphobot!")
 		return msg.sendMessage(`${user}, you know what? you're nothing but ${roll(start)} ${roll(middle)} ${roll(end)}.`);
 	}
 
