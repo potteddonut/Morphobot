@@ -12,7 +12,7 @@ module.exports = class extends Command {
         });
     }
     async run(msg, [piece]) {
-        return msg.send(escapeMarkdown(piece.constructor.toString(), true), {
+        return msg.channel.send(escapeMarkdown(piece.constructor.toString(), true), {
             split: true,
             code: 'js'
         });
