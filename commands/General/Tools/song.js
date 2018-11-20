@@ -20,7 +20,7 @@ module.exports = class extends Command {
             })
             .then(response => response.json())
             .then(response => response.tracks.items[0])
-            .catch(() => { throw msg.responder.error('An unexpected error occured. Try again in a bit.'); });
+            .catch(() => { console.error(err); throw msg.responder.error('An unexpected error occured. Try again in a bit.'); });
         if (song) return msg.sendMessage(song.external_urls.spotify);
         throw "Couldn't find any songs with that name.";
     }
