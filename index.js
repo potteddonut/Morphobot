@@ -11,8 +11,8 @@ const IdioticApi = require('./lib/IdioticApiClient');
 // goat, jake
 const mbStaff = ['147039883372789761', '116293018742554625'];
 const mbAdmin = []
-// stitch, morph, ladybug
-const mbDev = ['257847417183928320', '234558143051464704', '292690616285134850'];
+// stitch (soumil07), morph, ladybug
+const mbDev = ['292571834770128906', '234558143051464704', '292690616285134850'];
 
 // Morphobot's custom permission level system and configuration.
 // The mylevel command iterates through these levels from 10 to 0 to check which permission level the author has.
