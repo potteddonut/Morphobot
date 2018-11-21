@@ -8,7 +8,6 @@ module.exports = class extends Command {
         });
     }
     async run(msg) {
-        const _msg = superagent.get('https://www.whatthecommit.com/index.txt%27').then(r => r.text);
-        msg.send(`Here's your random commit message - ${_msg}`);
+        msg.send(`Here's your random commit message - ${superagent.get('https://whatthecommit.com/index.txt').then(r => r.text)}`);
     }
 };
