@@ -67,4 +67,5 @@ class Morphobot extends Client {
 
 }
 
+// logs in to the bot account
 new Morphobot(config).login(token);

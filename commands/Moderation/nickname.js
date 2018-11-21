@@ -11,17 +11,28 @@ module.exports = class extends Command {
 			aliases: ['nick'],
 			runIn: ['text'],
 			requiredPermissions: ['MANAGE_NICKNAMES'],
-			usage: '[user:member] [nickname:str][...]',
+			usage: '[user:member] [newnickname:str][...]',
 			usageDelim: ' '
 		});
 	}
-	async run(message, [user = message.member, newNickName]) {
-		if (!newNickName) { newNickName = '' };
-		newNickName = newNickName.join(this.usageDelim);
-		await user.setNickname(newNickName)
-			.then(() => message.send(`Succesfully set **${user.user.tag}**'s nickname to **${newNickName}**.`))
+
+	// async run(message, [user = message.member, newNickName]) {
+	// 	if (!newNickName) { newNickName = '' };
+	// 	newNickName = newNickName.join(this.usageDelim);
+	// 	await user.setNickname(newNickName)
+	// 		.then(() => message.send(`Succesfully set **${user.user.tag}**'s nickname to **${newNickName}**.`))
+	// 		.catch(() => {
+	// 			throw "I can't change that user's nickname. Make sure their role is below mine.";
+	// 		});
+	// }
+
+	async run(msg, [user = msg.member, newnickname]) {
+		if (!newnickname) return msg.sendMessage(`Your current nickname is - **${user.displayName}**`);
+		if ('all' in msg.flags) newnickname = '';
+		await user.setNickname(newnickname)
+			.then(() => msg.responder.success(`Succesfully set **${user.user.tag}**'s nickname to **${newnickname}**.`))
 			.catch(() => {
-				throw "I can't change that user's nickname. Make sure their role is below mine.";
+				throw "I can't change that user's nickname. Make sure their highest role is below mine."
 			});
 	}
 
