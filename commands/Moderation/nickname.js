@@ -26,9 +26,10 @@ module.exports = class extends Command {
 	// 		});
 	// }
 
-	async run(msg, [user = msg.member, newnickname]) {
-		if (!newnickname) return msg.sendMessage(`Your current nickname is - **${user.displayName}**`);
-		if ('all' in msg.flags) newnickname = '';
+	async run(msg, [user = msg.member, ...newnickname]) {
+		newnickname = newnickname.join(this.usageDelim);
+		if (!newnickname) return msg.sendMessage(`**${msg.author.tag}**'s current nickname is - **${user.displayName}**`);
+		if ('reset' in msg.flags) newnickname = '';
 		await user.setNickname(newnickname)
 			.then(() => msg.responder.success(`Succesfully set **${user.user.tag}**'s nickname to **${newnickname}**.`))
 			.catch(() => {
