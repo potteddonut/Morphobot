@@ -11,7 +11,7 @@ module.exports = class extends Command {
         // superagent.get(URL) returns a promise, so we need to handle it,
         // which I have done by converting r into text.
         // but why is it returning [object Promise] ?
-        await superagent.get('https://whatthecommit.com/index.txt%27')
+        await superagent.get('https://whatthecommit.com/index.txt')
             .then(r => r.text)
     }
 };
