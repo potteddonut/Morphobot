@@ -13,7 +13,5 @@ module.exports = class extends Command {
         // but why is it returning [object Promise] ?
         await superagent.get('https://whatthecommit.com/index.txt%27')
             .then(r => r.text)
-            .then(r => msg.send(r))
-            .catch(() => this.client.emit('wtf'))
     }
 };
