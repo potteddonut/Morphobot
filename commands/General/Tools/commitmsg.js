@@ -13,5 +13,6 @@ module.exports = class extends Command {
         // but why is it returning [object Promise] ?
         await superagent.get('https://whatthecommit.com/index.txt')
             .then(r => r.text)
+            .catch(() => this.client.emit('commandError'));
     }
 };
