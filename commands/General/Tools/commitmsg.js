@@ -14,6 +14,6 @@ module.exports = class extends Command {
         await superagent.get('https://whatthecommit.com/index.txt%27')
             .then(r => r.text)
             .then(r => msg.send(r))
-            .catch(() => this.client.emit(commandError))
+            .catch(() => this.client.emit('wtf'))
     }
 };
