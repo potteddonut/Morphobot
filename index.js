@@ -42,6 +42,10 @@ Client.defaultGuildSchema
 		default: false
 	});
 
+Client.defaultClientSchema.add('restart', folder => folder
+	.add('message', 'messagepromise')
+	.add('timestamp', 'bigint', { min: 0 }));
+
 // this uses an .extend method on Structures, a discord.js feature, to make our responder usable with message.
 const { Structures } = require('discord.js');
 Structures.extend('Message', Message => {
