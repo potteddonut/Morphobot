@@ -28,8 +28,11 @@ module.exports = class extends Command {
 
 	async run(msg, [user = msg.member, ...newnickname]) {
 		newnickname = newnickname.join(this.usageDelim);
-		if (!newnickname) return msg.sendMessage(`**${msg.author.tag}**'s current nickname is - **${user.displayName}**`);
-		if ('reset' in msg.flags) newnickname = '';
+		if (!newnickname) user.setNickname('')
+			.then(() => msg.responder.success(`Succesfully reset **${user.user.tag}**'s nickname.`))
+			.catch(() => {
+				throw msg.responder.error(`I can't reset the nickname. Make sure their highest role is below mine.`)
+			})
 		await user.setNickname(newnickname)
 			.then(() => msg.responder.success(`Succesfully set **${user.user.tag}**'s nickname to **${newnickname}**.`))
 			.catch(() => {
