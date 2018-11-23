@@ -23,12 +23,13 @@ module.exports = class extends Command {
 
 		const levels = {
 			0: 'Morphobot User',
-			5: 'Server Moderator',
-			6: 'Server Administrator',
-			7: 'Server Owner',
-			8: 'Morphobot Staff',
-			9: 'Morphobot Administrator',
-			10: 'Morphobot Developer'
+			4: 'Server Moderator',
+			5: 'Server Administrator',
+			6: 'Server Owner',
+			7: 'Morphobot Staff',
+			8: 'Morphobot Administrator',
+			9: 'Morphobot Developer',
+			10: 'Morphobot Developer | Owner'
 		};
 
 		return message.sendMessage(`Your permission level is **${perm}** - ${levels[perm]}.`);
