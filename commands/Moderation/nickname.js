@@ -41,7 +41,7 @@ module.exports = class extends Command {
 				})
 		} else {
 			await user.setNickname(newNickname)
-				.then(() => msg.responder.success(`Succesfully set **${user.user.tag}**'s nickname to **${newNickname}`))
+				.then(() => msg.responder.success(`Succesfully set **${user.user.tag}**'s nickname to **${newNickname}**`))
 				.catch(() => {
 					throw msg.responder.error(`I can't change that user's nickname. Make sure their highest role is below mine.`)
 				});
