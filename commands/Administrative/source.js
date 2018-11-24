@@ -5,7 +5,7 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             description: 'Returns source code from the bot.',
-            permissionLevel: 10,
+            permissionLevel: 9,
             aliases: ['src', 'sourcecode', 'code'],
             guarded: true,
             usage: '<piece:piece>'

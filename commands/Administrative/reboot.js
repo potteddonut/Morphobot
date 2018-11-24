@@ -12,7 +12,7 @@ module.exports = class extends Command {
 
 	constructor(...args) {
 		super(...args, {
-			permissionLevel: 10,
+			permissionLevel: 9,
 			guarded: true,
 			description: language => language.get('COMMAND_REBOOT_DESCRIPTION')
 		});
@@ -36,7 +36,7 @@ module.exports = class extends Command {
 		const [message, timestamp] = await Promise.all(rebootKeys.map(key => this._resolveSetting(key)));
 		await this.client.settings.reset(rebootKeys);
 
-		if (message) message.send(`✅ Successfully rebooted. (Took: ${timestamp && this.constructor.getFriendlyDuration(timestamp)})`);
+		if (message) message.responder.success(`Successfully rebooted. (Took: ${timestamp && this.constructor.getFriendlyDuration(timestamp)})`);
 		else this.client.emit('info', 'No restart channel');
 	}
 
