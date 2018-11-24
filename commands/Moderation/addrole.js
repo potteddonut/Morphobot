@@ -22,7 +22,7 @@ module.exports = class extends Command {
 		}
 
 		return member.roles.add(role, `${message.author.tag} assigned role using the -addrole command.`)
-			.then(() => message.send(`Succesfully assigned role \`${role.name}\` to \`${member.user.tag}\``))
+			.then(() => message.responder.success(`Succesfully assigned role \`${role.name}\` to \`${member.user.tag}\``))
 			.catch(error => this.client.emit('error', error));
 	}
 
