@@ -16,11 +16,11 @@ module.exports = class extends Command {
 		this
 			.createCustomResolver('key', (arg, possible, message, [action]) => {
 				if (action === 'show' || arg) return arg;
-				throw message.language.get('COMMAND_CONF_NOKEY');
+				throw message.responder.error('You must provide a key!');
 			})
 			.createCustomResolver('value', (arg, possible, message, [action]) => {
 				if (!['set', 'remove'].includes(action) || arg) return arg;
-				throw message.language.get('COMMAND_CONF_NOVALUE');
+				throw message.responder.error('You must provide a value!')
 			});
 	}
 
