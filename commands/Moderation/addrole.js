@@ -13,6 +13,7 @@ module.exports = class extends Command {
 			description: 'Assigns a role.'
 		});
 	}
+
 	async run(message, [member, role]) {
 		member = await message.guild.members.fetch(member);
 		if (member.roles.has(role.id)) return message.send('The specified user already has that role.');

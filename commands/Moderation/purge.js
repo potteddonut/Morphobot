@@ -18,7 +18,7 @@ module.exports = class extends Command {
 		let messages = await message.channel.messages.fetch({
 			limit: 100
 		});
-		if (!messages || messages.size === 0) throw 'I am unable to delete the messages.';
+		if (!messages || messages.size === 0) throw message.responder.error('I am unable to delete the messages.');
 		if (filter) {
 			const user = typeof filter !== 'string' ? filter : null;
 			const type = typeof filter === 'string' ? filter : 'user';
@@ -26,7 +26,7 @@ module.exports = class extends Command {
 		}
 		messages = messages.array().slice(0, limit);
 		await message.channel.bulkDelete(messages);
-		return message.send(`Succesfully deleted ${messages.length} messages, out of ${limit}.`)
+		return message.responder.success(`Succesfully deleted ${messages.length} messages, out of ${limit}.`)
 			.then(msg => msg.delete({
 				timeout: 3000
 			}));

@@ -61,7 +61,7 @@ module.exports = class extends Command {
 		const oldReason = log.reason;
 		modlogs.logs[selected - 1].reason = reason;
 		await this.client.providers.default.replace('modlogs', message.guild.id, modlogs);
-		return message.send(`Case ${selected} has been succesfully updated. ${util.codeBlock('http', [
+		return message.responder.success(`Case ${selected} has been succesfully updated. ${util.codeBlock('http', [
 			`Old reason: ${oldReason || `Not set.`}`,
 			`New reason: ${reason}`
 		].join('\n'))}`);
