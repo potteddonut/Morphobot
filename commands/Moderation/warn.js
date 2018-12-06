@@ -6,7 +6,7 @@ module.exports = class extends Command {
 
 	constructor(...args) {
 		super(...args, {
-			permissionLevel: 5,
+			permissionLevel: 4,
 			name: 'warn',
 			runIn: ['text'],
 			usageDelim: ' ',

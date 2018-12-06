@@ -5,7 +5,7 @@ module.exports = class extends Command {
 
 	constructor(...args) {
 		super(...args, {
-			permissionLevel: 5,
+			permissionLevel: 4,
 			name: 'kick',
 			usageDelim: ' ',
 			description: 'Kicks a user from the server.',

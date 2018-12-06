@@ -13,7 +13,7 @@ module.exports = class extends Command {
 		super(...args, {
 			runIn: ['text'],
 			aliases: ['updatecase', 'case', 'setreason'],
-			permissionLevel: 5,
+			permissionLevel: 4,
 			description: 'Edits / updates the reason of a modlog case.',
 			usage: '<case:integer> <reason:string> [...]',
 			usageDelim: ' ',

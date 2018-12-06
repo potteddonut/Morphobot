@@ -7,7 +7,7 @@ module.exports = class extends Command {
 	constructor(...args) {
 		super(...args, {
 			description: 'Changes the nickname of a user.',
-			permissionLevel: 5,
+			permissionLevel: 4,
 			aliases: ['nick'],
 			runIn: ['text'],
 			requiredPermissions: ['MANAGE_NICKNAMES'],

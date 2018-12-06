@@ -6,7 +6,7 @@ module.exports = class extends Command {
 	constructor(...args) {
 		super(...args, {
 			name: 'purge',
-			permissionLevel: 5,
+			permissionLevel: 4,
 			requiredPermissions: ['MANAGE_MESSAGES'],
 			aliases: ['p', 'prune'],
 			runIn: ['text'],
