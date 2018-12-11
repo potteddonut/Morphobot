@@ -8,7 +8,7 @@ module.exports = class extends Command {
 			description: 'Creates a new reminder.',
 			extendedHelp: 'For example, to set a reminder that goes off in 10 minutes, you will do - mb!remindme 10m, do this.',
 			usage: '<when:time> <text:...str>',
-			usageDelim: ', '
+			usageDelim: ' '
 		});
 	}
 	async run(message, [when, text]) {
