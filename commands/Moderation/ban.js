@@ -16,6 +16,7 @@ module.exports = class extends Command {
         });
 
     }
+
     async run(msg, [member, ...reason]) {
         // validation
         if (member === msg.author) return msg.responder.error("You can't ban yourself, genius.");
