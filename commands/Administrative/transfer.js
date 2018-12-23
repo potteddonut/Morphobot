@@ -6,7 +6,7 @@ module.exports = class extends Command {
 
 	constructor(...args) {
 		super(...args, {
-			permissionLevel: 10,
+			permissionLevel: 9,
 			guarded: true,
 			description: language => language.get('COMMAND_TRANSFER_DESCRIPTION'),
 			usage: '<Piece:piece>'

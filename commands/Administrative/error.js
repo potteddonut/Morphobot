@@ -7,7 +7,7 @@ module.exports = class extends Command {
 	constructor(...args) {
 		super(...args, {
 			// dev
-			permissionLevel: 10,
+			permissionLevel: 9,
 			aliases: ['errorcode'],
 			description: 'Returns details of an error via a generated error code.',
 			usage: '<code:string>'
