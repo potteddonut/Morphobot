@@ -16,7 +16,6 @@ Github Commit Tags -
 `misc`: minor changes | 
 `typings`: update typings | 
 `ci`: change ci conf | 
-`lint`: fixing lint errors | 
 `feat`: feature request | 
 `cleanup`: code cleanup | 
 `refactors`: code refactors | 
