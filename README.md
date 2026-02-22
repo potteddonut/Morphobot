@@ -1,5 +1,7 @@
 # Morphobot
 
+**EDIT:** This project is no longer maintained. It was a passion project when I was 12, and the Klasa framework has been discontinued.
+
 [![Discord Bots](https://discordbots.org/api/widget/499457091526721538.svg)](https://discordbots.org/bot/499457091526721538)
 
 Morphobot is a Discord bot written with the discord.js library and built on the Klasa framework.
@@ -20,5 +22,3 @@ Github Commit Tags -
 `cleanup`: code cleanup | 
 `refactors`: code refactors | 
 `wip`: a work in progress commit
-
-(Credits to TheFloppyBanana and Kyra)
